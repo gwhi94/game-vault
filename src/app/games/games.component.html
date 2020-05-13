@@ -1,0 +1,14 @@
+<Button text="games works!" class="btn btn-primary"></Button>
+<ActionBar>
+    <Label text="Test"></Label>
+</ActionBar>
+
+<GridLayout >
+    <ListView [items]="userGames">
+        <ng-template let-item="item">
+            <StackLayout>
+                <Label [text]="item.title"></Label>
+            </StackLayout>
+        </ng-template>
+    </ListView>
+</GridLayout>

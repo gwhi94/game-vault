@@ -1,0 +1,39 @@
+<BottomNavigation>
+    <TabStrip iosIconRenderingMode="alwaysOriginal">
+
+        <TabStripItem>
+            <Label text="Library"></Label>
+            <Image src="font://&#xf007;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem>
+            <Label text="Top 10"></Label>
+            <Image src="font://&#xf0c0;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem>
+            <Label text="Add Games"></Label>
+            <Image src="font://&#xf0c0;" class="fas t-36"></Image>
+        </TabStripItem>
+        <TabStripItem>
+            <Label text="Log Out"></Label>
+            <Image src="font://&#xf0c0;" class="fas t-36"></Image>
+        </TabStripItem>
+
+    </TabStrip>
+
+    <TabContentItem>
+        <page-router-outlet name="gamesTab" actionBarVisibility="never"></page-router-outlet>
+    </TabContentItem>
+
+    <TabContentItem>
+        <page-router-outlet name="top10Tab" actionBarVisibility="never"></page-router-outlet>
+    </TabContentItem>
+    
+    <TabContentItem>
+        <page-router-outlet name="addGamesTab" actionBarVisibility="never"></page-router-outlet>
+    </TabContentItem>
+    
+    <TabContentItem>
+        <page-router-outlet name="logOutTab" actionBarVisibility="never"></page-router-outlet>
+    </TabContentItem>
+
+</BottomNavigation>
