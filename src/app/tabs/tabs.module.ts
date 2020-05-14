@@ -6,6 +6,7 @@ import { TabsComponent } from "./tabs.component";
 
 @NgModule({
   imports: [
+      
       NativeScriptCommonModule,
       NativeScriptRouterModule,
       NativeScriptRouterModule.forChild([
@@ -26,9 +27,10 @@ import { TabsComponent } from "./tabs.component";
               ]
           }
       ])
+      
   ],
   declarations: [
-      TabsComponent
+    TabsComponent
   ],
   providers: [
   ],

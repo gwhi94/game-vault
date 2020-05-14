@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
+import * as app from "tns-core-modules/application";
 const firebase = require("nativescript-plugin-firebase");
+
 
 @Component({
     selector: "ns-app",
@@ -8,7 +10,12 @@ const firebase = require("nativescript-plugin-firebase");
 export class AppComponent implements OnInit {
 
     constructor() {
+      console.log('---------file:',app.getCssFileName());
+      //app.setCssFileName("../_app.common.scss");
+      console.log('---------file:',app.getCssFileName());
+      //app.loadAppCss();
         // Use the component constructor to inject providers.
+       
     }
 
     ngOnInit(): void {

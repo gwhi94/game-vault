@@ -53,8 +53,9 @@ export class LoginComponent {
     login() {
         this.userService.signIn(this.user.email,this.user.password)
             .then(() => {
+                console.log("Logging in");
                 this.processing = false;
-                this.routerExtensions.navigate(["../welcome"], { clearHistory: true });
+                this.routerExtensions.navigate(["../tabs/default"], { clearHistory: true });
             })
             .catch(() => {
                 this.processing = false;
