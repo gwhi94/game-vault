@@ -1,1 +1,26 @@
-<Button text="add-games works!" class="btn btn-primary"></Button>
+<ActionBar class="action-bar">
+    <Label class="label" text="Add Game"></Label>
+</ActionBar>
+
+
+<GridLayout class="page__content page">
+    <StackLayout>
+        <SearchBar hint="Search for a game..."
+        [text]="searchPhrase"
+        (submit)="onSubmit($event)" >
+        </SearchBar>
+        
+        <ListView height="150" [items]="searchGames">
+            <h1>Games</h1>
+            <ng-template let-item="item">
+                <StackLayout>
+                   
+                    <Label row="0" col="1" class="list-group-item-heading" [text]="item.title"></Label>
+                </StackLayout>
+            </ng-template>
+        </ListView>
+        
+        <Button text="add-games works!" class="btn btn-primary"></Button>
+    </StackLayout>
+</GridLayout>
+

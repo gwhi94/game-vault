@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { GameSearchService } from '../services/game-search.service';
+import { subscribeOn } from 'rxjs/operators';
+import { SearchBar } from "tns-core-modules/ui/search-bar";
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 
 @Component({
   selector: 'ns-add-games',
@@ -7,9 +13,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddGamesComponent implements OnInit {
 
-  constructor() { }
+  private subscription1;
+
+  searchGames = new ObservableArray();
+
+
+
+  constructor(private gameSearchService:GameSearchService) { }
 
   ngOnInit(): void {
+   
+  
   }
+
+
+  onSubmit(args){
+    const searchBar = args.object as SearchBar;
+    console.log(`Searching for ${searchBar.text}`);
+
+    this.gameSearchService.fetchGamesPrimary(searchBar.text)
+      .subscribe(res => {
+        console.log(res);
+        this.searchGames = res['result'];
+      })
+
+  }
+
+  //https://medium.com/javascript-everyday/a-live-search-example-angular-and-react-solutions-bd42a4d5dd7e
 
 }

@@ -2,6 +2,8 @@ import { Component, OnInit, ViewContainerRef  } from '@angular/core';
 const firebase = require("nativescript-plugin-firebase/app");
 const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 import { UserCollectionService } from "../services/user-collection.service";
+import { SearchBar } from "tns-core-modules/ui/search-bar";
+
 
 @Component({
   selector: 'ns-games',
@@ -36,5 +38,6 @@ export class GamesComponent implements OnInit {
           this.userGames.push(games)
       })
   }
+
 
 }

@@ -1,7 +1,7 @@
-<BottomNavigation>
-    <TabStrip iosIconRenderingMode="alwaysOriginal">
+<BottomNavigation >
+    <TabStrip class="tab-strip" iosIconRenderingMode="alwaysOriginal">
 
-        <TabStripItem>
+        <TabStripItem class="">
             <Label text="Library"></Label>
             <Image src="font://&#xf007;" class="fas t-36"></Image>
         </TabStripItem>
@@ -21,18 +21,18 @@
     </TabStrip>
 
     <TabContentItem>
-        <page-router-outlet name="gamesTab" actionBarVisibility="never"></page-router-outlet>
+        <page-router-outlet name="gamesTab" actionBarVisibility="true"></page-router-outlet>
     </TabContentItem>
 
     <TabContentItem>
-        <page-router-outlet name="top10Tab" actionBarVisibility="never"></page-router-outlet>
+        <page-router-outlet name="top10Tab" actionBarVisibility="true"></page-router-outlet>
     </TabContentItem>
     
     <TabContentItem>
-        <page-router-outlet name="addGamesTab" actionBarVisibility="never"></page-router-outlet>
+        <page-router-outlet name="addGamesTab" actionBarVisibility="true"></page-router-outlet>
     </TabContentItem>
     
     <TabContentItem>
-        <page-router-outlet name="logOutTab" actionBarVisibility="never"></page-router-outlet>
+        <page-router-outlet name="logOutTab" actionBarVisibility="true"></page-router-outlet>
     </TabContentItem>
 </BottomNavigation>

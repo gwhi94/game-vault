@@ -1,13 +1,19 @@
-<Button text="games works!" class="btn btn-primary"></Button>
-<ActionBar>
-    <Label text="Test"></Label>
+<ActionBar class="action-bar">
+    <Label class="label" text="My Library"></Label>
 </ActionBar>
 
-<GridLayout>
+
+<GridLayout class="page__content page">
+    <!-- <SearchBar hint="Search your library..."
+    [text]="searchPhrase"
+     >
+    </SearchBar> -->
+    
     <ListView [items]="userGames">
         <ng-template let-item="item">
             <StackLayout>
-                <Label [text]="item.title"></Label>
+                <Image row="0" col="0" [src]="item.src" class="thumb img-circle"></Image>
+                <Label row="0" col="1" class="list-group-item-heading" [text]="item.title"></Label>
             </StackLayout>
         </ng-template>
     </ListView>
