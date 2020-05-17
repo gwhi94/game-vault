@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule, COMPONENTS  } from "./app-routing.module";
 import { AppComponent } from "./app.component";
+import { AddGameModalComponent } from './modals/add-game-modal/add-game-modal.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import { AppComponent } from "./app.component";
     ],
     declarations: [
         AppComponent,
-        ...COMPONENTS
+        ...COMPONENTS,
+        AddGameModalComponent
         
         
     ],

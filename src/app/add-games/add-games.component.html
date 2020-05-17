@@ -10,12 +10,11 @@
         (submit)="onSubmit($event)" >
         </SearchBar>
         
-        <ListView height="150" [items]="searchGames">
-            <h1>Games</h1>
+        <ListView height="500" [items]="searchGames">
             <ng-template let-item="item">
-                <StackLayout>
-                   
-                    <Label row="0" col="1" class="list-group-item-heading" [text]="item.title"></Label>
+                <StackLayout>                  
+                    <Label row="0" col="1" class="list-group-item-heading" (tap)="inspectGame(item)" [text]="item.title"></Label>
+                    <Label row="1" col="0" class="list-group-item-heading" (tap)="inspectGame(item)" [text]="item.platform"></Label>
                 </StackLayout>
             </ng-template>
         </ListView>

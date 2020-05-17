@@ -17,15 +17,11 @@ export class AddGamesComponent implements OnInit {
 
   searchGames = new ObservableArray();
 
-
-
   constructor(private gameSearchService:GameSearchService) { }
 
   ngOnInit(): void {
    
-  
   }
-
 
   onSubmit(args){
     const searchBar = args.object as SearchBar;
@@ -39,6 +35,13 @@ export class AddGamesComponent implements OnInit {
 
   }
 
-  //https://medium.com/javascript-everyday/a-live-search-example-angular-and-react-solutions-bd42a4d5dd7e
+  inspectGame(item){
+    console.log(item);
+
+    this.gameSearchService.fetchGameSecondary(item.title, item.platform)
+      .subscribe(res => console.log(res));
+
+
+  }
 
 }
