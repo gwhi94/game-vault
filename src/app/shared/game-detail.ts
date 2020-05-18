@@ -5,6 +5,7 @@ export interface GameDetail {
     image:string;
     developer:string;
     publisher:Array<any>;
+    description:string;
 
 
 

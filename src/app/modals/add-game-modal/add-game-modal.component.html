@@ -3,11 +3,48 @@
     <StackLayout class="p-20 page modal-page">
         <Label class="h2 text-center" text="{{game.title}}" textWrap="true"></Label>
 
-        <GridLayout columns="auto, auto" rows="auto" width="100%" height="500" >           
+        <GridLayout columns="auto, auto" rows="auto" width="100%" height="auto">           
             <Image width="25%" row="0" col="0" src="{{game.image}}" stretch="aspectFit"></Image>
             
-            <Label text="Game Data" width="75%" row="0" col="1" colSpan="2" backgroundColor="green"></Label>
+            <!-- <Label text="Game Data"  backgroundColor="green"></Label> -->
+
+            <StackLayout class="game-details" width="75%" row="0" col="1" colSpan="2" orientation="vertical">
+                <Label>
+                    <FormattedString>
+                        <Span fontSize="22" fontWeight="Bold" text="Release Date: "></Span>
+                        <Span fontSize="22" color="#1eb980" text="{{game.releaseDate}}"></Span>
+                    </FormattedString>
+                </Label>
+
+                <Label>
+                    <FormattedString>
+                        <Span fontSize="22" fontWeight="Bold" text="Developer: "></Span>
+                        <Span fontSize="22" color="#1eb980" text="{{game.developer}}"></Span>
+                    </FormattedString>
+                </Label>
+
+                <Label>
+                    <FormattedString>
+                        <Span fontSize="22" fontWeight="Bold" text="Publisher: "></Span>
+                        <Span fontSize="22" color="#1eb980" text="{{game.publisher[0]}}"></Span>
+                    </FormattedString>
+                </Label>
+
+                <Label>
+                    <FormattedString>
+                        <Span fontSize="22" fontWeight="Bold" text="GENRE PLACEHOLDER "></Span>
+                        <Span fontSize="22" color="#1eb980" text="GENRE PLACEHOLDER"></Span>
+                    </FormattedString>
+                </Label>         
+              </StackLayout>
+
+            
           </GridLayout>
+
+          <StackLayout class="game-description">
+            <Label textWrap="true" text="{{game.description}}"></Label>
+
+          </StackLayout>
 
 
 

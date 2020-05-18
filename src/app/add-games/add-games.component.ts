@@ -58,7 +58,8 @@ export class AddGamesComponent implements OnInit {
           genre:result.genre,
           image:result.image,
           developer:result.developer,
-          publisher:result.publisher
+          publisher:result.publisher,
+          description:result.description
         }
 
         this.showAddGameModal(this.detailGame);
