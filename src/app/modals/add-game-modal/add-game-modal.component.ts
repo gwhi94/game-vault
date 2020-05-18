@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalDialogParams } from "nativescript-angular/modal-dialog";
+
+import { GameDetail } from '../../shared/game-detail';
 
 @Component({
   selector: 'ns-add-game-modal',
@@ -7,9 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddGameModalComponent implements OnInit {
 
-  constructor() { }
+  game:GameDetail;
+
+  constructor(private params: ModalDialogParams) { }
 
   ngOnInit(): void {
+    console.log("params", this.params);
+
+    this.game = this.params.context.context;
   }
+
+  onShownModally(args){
+    console.log(args);
+    console.log("shown");
+  }
+
+  close() {
+    this.params.closeCallback();
+}
 
 }

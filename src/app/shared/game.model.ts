@@ -1,4 +1,4 @@
-export class Game  {
+export interface Game  {
     title:string;
     platform:string;
 
