@@ -71,7 +71,7 @@ export class LoginComponent {
       this.userService.registerUser(this.user.email, this.user.password)
         .then((result) => {
             console.log(result)
-           
+
             this.userCollectionService.initUserCollectionDocument(result.uid)
                 .then(() => {
                     this.login();

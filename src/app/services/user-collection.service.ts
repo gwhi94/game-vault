@@ -17,14 +17,20 @@ export class UserCollectionService {
 
   constructor() {
     this.userCollection = firebase.firestore().collection("userCollection");
+    firebasePlugin.getCurrentUser()
+      .then(
+        user => {
+          console.log("HERE", user);
+          this.uid = user.uid
+        }
+      )
+
     
    }
 
   getUserCollection(callback:Function){
 
-    this.uid = firebase.auth().currentUser;
-    console.log("UID AT LOGIN", this.uid);
-    
+     
     const query = this.userCollection.where("uid", "==", this.uid);
       query
         .onSnapshot(querySnapshot => {
@@ -45,22 +51,34 @@ export class UserCollectionService {
   }
 
   addGameToUserCollection(game){
-    this.uid = firebase.auth().currentUser;
+
+    console.log(this.uid);
+
+    let gamesArr = [];
+
+   
+
+    const documentToUpdate = firebase.firestore().collection("userCollection").doc(this.uid);
+
     
+
+   //almost there
+
+    const docObject = documentToUpdate.onSnapshot(doc => {
+      console.log("doc datas", doc.data());
+      gamesArr = doc.games;
+      console.log(gamesArr);
+    })
     
-    console.log("UIgD", this.uid);
-    const query = this.userCollection.where("uid", "==", this.uid);
-    console.log("QUERY", query);
+ 
+  
+
 
   }
 
 
-  
-
-
   initUserCollectionDocument(uid){
-    return this.userCollection.doc("UserObject").set({
-      uid:uid,
+    return this.userCollection.doc(uid).set({
       games:[]
     })
   }
