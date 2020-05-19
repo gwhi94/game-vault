@@ -4,20 +4,27 @@ import { Observable, of } from 'rxjs'
 
 const firebase = require("nativescript-plugin-firebase/app");
 
+const firebasePlugin = require("nativescript-plugin-firebase");
+//gonna try this
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserCollectionService {
   userCollection;
-  uid:string = 'testUID'
+  uid:string;
 
   constructor() {
     this.userCollection = firebase.firestore().collection("userCollection");
+    
    }
 
   getUserCollection(callback:Function){
-    console.log("hit");
+
+    this.uid = firebase.auth().currentUser;
+    console.log("UID AT LOGIN", this.uid);
+    
     const query = this.userCollection.where("uid", "==", this.uid);
       query
         .onSnapshot(querySnapshot => {
@@ -37,7 +44,28 @@ export class UserCollectionService {
 
   }
 
+  addGameToUserCollection(game){
+    this.uid = firebase.auth().currentUser;
+    
+    
+    console.log("UIgD", this.uid);
+    const query = this.userCollection.where("uid", "==", this.uid);
+    console.log("QUERY", query);
+
+  }
+
+
   
+
+
+  initUserCollectionDocument(uid){
+    return this.userCollection.doc("UserObject").set({
+      uid:uid,
+      games:[]
+    })
+  }
+
+
 
   updateGameInUserCollection(){
 

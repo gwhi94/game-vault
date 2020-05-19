@@ -204,10 +204,12 @@ $muted-grey:lighten(#1b1b1b, 5%);
     
     .btn {
     color: #ffffff;
+    border:1px solid transparent;
+    border-radius: 10px;
     }
     
     .btn-primary {
-    background-color: #5c6bc0;
+    background-color: #1eb980;
     }
     
     .btn-primary {

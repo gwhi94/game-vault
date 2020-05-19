@@ -33,10 +33,12 @@ export class GamesComponent implements OnInit {
       })         
   }
 
-  formGameCollection(){   
-      this.userCollections.getItem(0).games.forEach(games => {
-          this.userGames.push(games)
-      })
+  formGameCollection(){  
+      if(this.userCollections.length > 0){
+          this.userCollections.getItem(0).games.forEach(games => {
+              this.userGames.push(games)
+          })
+      } 
   }
 
 

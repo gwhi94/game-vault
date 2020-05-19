@@ -36,20 +36,15 @@
                         <Span fontSize="22" color="#1eb980" text="GENRE PLACEHOLDER"></Span>
                     </FormattedString>
                 </Label>         
-              </StackLayout>
-
-            
+              </StackLayout>           
           </GridLayout>
 
-          <StackLayout class="game-description">
-            <Label textWrap="true" text="{{game.description}}"></Label>
+          
 
-          </StackLayout>
-
+          <StarRating emptyBorderColor="white" emptyColor="white" filledBorderColor="black" filledColor="red" value="3" max="5"></StarRating>
 
 
-
-        <Button class="btn btn-outline" text="Close Modal" (tap)="close()"></Button>
+        <Button class="btn btn-primary" text="Add to Library" (tap)="close()"></Button>
     </StackLayout>
 
 </Page>

@@ -6,7 +6,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 
-
+import { UserCollectionService } from '../services/user-collection.service';
 
 const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 
@@ -26,7 +26,7 @@ export class AddGamesComponent implements OnInit {
 
   detailGame: GameDetail;
 
-  constructor(private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService,private gameSearchService:GameSearchService) { }
+  constructor(private userCollectionService: UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService,private gameSearchService:GameSearchService) { }
 
   ngOnInit(): void {
    
@@ -62,25 +62,36 @@ export class AddGamesComponent implements OnInit {
           description:result.description
         }
 
-        this.showAddGameModal(this.detailGame);
-
-            
+        this.showAddGameModal(this.detailGame).then(result => {
+          console.log(result);
+          this.addGameToLibrary(result);
+        });
+        
       }
         
       );
 
       //trying to map this to the model.
 
-
   }
 
-  showAddGameModal(detailGame){
+  showAddGameModal(detailGame): Promise<any> {
     const options: ModalDialogOptions = {
       viewContainerRef: this.viewContainerRef,
       fullscreen: true,
       context: {context:detailGame}
   };
-  this.modalService.showModal(AddGameModalComponent, options);
+  return this.modalService.showModal(AddGameModalComponent, options);
+
+  }
+
+  addGameToLibrary(game){
+    this.userCollectionService.addGameToUserCollection(game);
+      /* .then((result) => {
+        console.log("Game Added", result)
+      }) */
+
+    
 
   }
 

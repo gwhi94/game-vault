@@ -16,8 +16,9 @@ export class AddGameModalComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("params", this.params);
-
     this.game = this.params.context.context;
+    console.log(this.game.description);
+  
   }
 
   onShownModally(args){
@@ -26,7 +27,7 @@ export class AddGameModalComponent implements OnInit {
   }
 
   close() {
-    this.params.closeCallback();
+    this.params.closeCallback(this.game);
 }
 
 }

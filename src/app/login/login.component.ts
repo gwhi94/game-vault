@@ -6,6 +6,8 @@ import { RouterExtensions } from "nativescript-angular/router";
 import { User } from "../shared/user.model";
 import { UserService } from "../services/user.service";
 
+import { UserCollectionService } from '../services/user-collection.service';
+
 @Component({
     selector: "app-login",
     moduleId: module.id,
@@ -19,7 +21,7 @@ export class LoginComponent {
     @ViewChild("password", {static: false}) password: ElementRef;
     @ViewChild("confirmPassword", {static: false}) confirmPassword: ElementRef;
 
-    constructor(private page: Page, private userService: UserService, private routerExtensions: RouterExtensions) {
+    constructor(private page: Page, private userCollectionService:UserCollectionService, private userService: UserService, private routerExtensions: RouterExtensions) {
         this.page.actionBarHidden = true;
         this.user = new User();
         this.user.email = "dev@game-vault.com";
@@ -64,20 +66,22 @@ export class LoginComponent {
     }
 
     register() {
-       /*  if (this.user.password != this.user.confirmPassword) {
-            this.alert("Your passwords do not match.");
-            return;
-        }
-        this.userService.register(this.user)
-            .then(() => {
-                this.processing = false;
-                this.alert("Your account was successfully created.");
-                this.isLoggingIn = true;
-            })
-            .catch(() => {
-                this.processing = false;
-                this.alert("Unfortunately we were unable to create your account.");
-            }); */
+      console.log(this.user.email, this.user.password);
+
+      this.userService.registerUser(this.user.email, this.user.password)
+        .then((result) => {
+            console.log(result)
+           
+            this.userCollectionService.initUserCollectionDocument(result.uid)
+                .then(() => {
+                    this.login();
+                })
+           
+        })
+      .catch((result) => {
+          console.log(result);
+          console.log("User not registered, component")
+      })
     }
 
     forgotPassword() {
