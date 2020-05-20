@@ -86,7 +86,7 @@ export class AddGamesComponent implements OnInit {
   }
 
   addGameToLibrary(game){
-    this.userCollectionService.addGameToUserCollection(game);
+    this.userCollectionService.addGameToUserCollection(game, 0);
       /* .then((result) => {
         console.log("Game Added", result)
       }) */

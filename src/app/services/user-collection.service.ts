@@ -28,18 +28,29 @@ export class UserCollectionService {
     
    }
 
-  getUserCollection(callback:Function){
+  getUserCollection(): Promise<any>{    
 
-     
-    const query = this.userCollection.where("uid", "==", this.uid);
+    const usersDocument = firestore.collection("userCollection").doc(this.uid);
+   
+    return usersDocument.get()
+      .then((res) => {
+        return res.data().games
+      })
+  
+    
+
+    
+
+
+    /* const query = this.userCollection.where("uid", "==", this.uid);
       query
         .onSnapshot(querySnapshot => {
           callback(this.parseSnapshot(querySnapshot))
-        })   
+        })    */
  
   }
 
-  parseSnapshot(querySnapshot){
+/*   parseSnapshot(querySnapshot){
     const collection = [];
     querySnapshot.forEach(doc => {
       var dataToSave = doc.data();
@@ -48,33 +59,15 @@ export class UserCollectionService {
     });
     return(collection);
 
-  }
+  } */
 
   addGameToUserCollection(game, rating){
 
-    console.log(this.uid);
-
     let obJtoUpdate = {title:game.title, rating:5}
-
     const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
-
     documentToUpdate.update({
       games: firestore.FieldValue.arrayUnion(obJtoUpdate)
     })
-
-    
-
-   //almost there
-/* 
-    const docObject = documentToUpdate.onSnapshot(doc => {
-      console.log("doc datas", doc.data());
-      gamesArr = doc.games;
-      console.log(gamesArr);
-    }) */
-    
- 
-  
-
 
   }
 

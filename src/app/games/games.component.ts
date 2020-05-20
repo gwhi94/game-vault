@@ -14,7 +14,6 @@ import { SearchBar } from "tns-core-modules/ui/search-bar";
 export class GamesComponent implements OnInit {
 
   userId:string;
-  userCollections = new ObservableArray();
   userGames = new ObservableArray();
   loaded:Boolean = true;
 
@@ -22,24 +21,17 @@ export class GamesComponent implements OnInit {
   constructor(private userCollectionService:UserCollectionService) { }
 
   ngOnInit(): void {
-      this.userCollectionService.getUserCollection((collections) => {
-          this.userCollections.length = 0;
-          this.userGames.length = 0;
-          const tempCollections = <any>collections;
-          tempCollections.forEach((collection) => {
-              this.userCollections.push(collection)
-          })
-          this.formGameCollection();
-      })         
-  }
 
-  formGameCollection(){  
-      if(this.userCollections.length > 0){
-          this.userCollections.getItem(0).games.forEach(games => {
-              this.userGames.push(games)
-          })
-      } 
-  }
+    this.userCollectionService.getUserCollection()
+        .then(result => {
+            console.log("RESULT", result);
+            this.userGames.length = 0;
+            result.forEach(game => {
+                this.userGames.push(game)
+            });
 
+            
+        })
+  }
 
 }
