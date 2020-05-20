@@ -28,26 +28,32 @@ export class UserCollectionService {
     
    }
 
-  getUserCollection(): Promise<any>{    
+  getUserCollection(callback:Function) {    
 
     const usersDocument = firestore.collection("userCollection").doc(this.uid);
    
-    return usersDocument.get()
+    /* return usersDocument.get()
       .then((res) => {
         return res.data().games
+      }) */
+
+      usersDocument.onSnapshot(querySnapshot => {
+        callback(this.func(querySnapshot))
       })
   
-    
-
-    
-
-
+ 
     /* const query = this.userCollection.where("uid", "==", this.uid);
       query
         .onSnapshot(querySnapshot => {
           callback(this.parseSnapshot(querySnapshot))
         })    */
  
+  }
+
+  func(querySnapshot){
+    console.log("query", querySnapshot.data().games);
+
+    return(querySnapshot.data().games)
   }
 
 /*   parseSnapshot(querySnapshot){

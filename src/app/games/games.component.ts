@@ -22,16 +22,41 @@ export class GamesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.userCollectionService.getUserCollection()
-        .then(result => {
+    this.userCollectionService.getUserCollection((games) => {
+        console.log("Games", games);
+
+        games.forEach(game => {
+            this.userGames.push(game);
+        })
+    });
+
+
+}
+
+}
+
+  
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    /* .then(result => {
             console.log("RESULT", result);
             this.userGames.length = 0;
             result.forEach(game => {
                 this.userGames.push(game)
             });
 
-            
-        })
-  }
+       
 
-}
+            
+        }) */
+    
+ 
