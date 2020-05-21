@@ -12,8 +12,14 @@
     <ListView [items]="userGames">
         <ng-template let-item="item">
             <StackLayout>
-                <Image row="0" col="0" [src]="item.src" class="thumb img-circle"></Image>
-                <Label row="0" col="1" class="list-group-item-heading" [text]="item.title"></Label>
+                <GridLayout columns="6*,*, *" rows="*" width="auto" height="auto" >
+                   
+                    <Label row="0" col="0" class="list-group-item-heading" [text]="item.title"></Label>
+                    <Label row="0" col="1" class="fas" style="color:#e94236;font-size: 27px;" text="&#xf1f8;"></Label>                 
+                    <Label row="0" col="2" class="fas" style="color:#1eb980;font-size: 27px;" text="&#xf044;"></Label>
+              
+                  </GridLayout>
+                           
             </StackLayout>
         </ng-template>
     </ListView>

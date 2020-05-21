@@ -67,8 +67,7 @@ export class AddGamesComponent implements OnInit {
           this.addGameToLibrary(result);
         });
         
-      }
-        
+      }       
       );
 
       //trying to map this to the model.

@@ -1,14 +1,14 @@
 
 <Page class="page__content page" shownModally="onShownModally">
-    <StackLayout class="p-20 page modal-page">
+    <StackLayout height="100%" width="100%" class="p-20 page modal-page"> 
         <Label class="h2 text-center" text="{{game.title}}" textWrap="true"></Label>
 
-        <GridLayout columns="auto, auto" rows="auto" width="100%" height="auto">           
-            <Image width="25%" row="0" col="0" src="{{game.image}}" stretch="aspectFit"></Image>
+        <GridLayout class="modal-grid" columns="auto, auto" rows="auto" width="100%" height="80%">           
+            <Image verticalAlignment="top" width="25%" row="0" col="0" src="{{game.image}}" stretch="aspectFit"></Image>
             
             <!-- <Label text="Game Data"  backgroundColor="green"></Label> -->
 
-            <StackLayout class="game-details" width="75%" row="0" col="1" colSpan="2" orientation="vertical">
+            <StackLayout class="game-details" width="75%" height="100%" row="0" col="1" colSpan="2" orientation="vertical">
                 <Label>
                     <FormattedString>
                         <Span fontSize="22" fontWeight="Bold" text="Release Date: "></Span>
@@ -36,15 +36,16 @@
                         <Span fontSize="22" color="#1eb980" text="GENRE PLACEHOLDER"></Span>
                     </FormattedString>
                 </Label>         
-              </StackLayout>           
-          </GridLayout>
+            </StackLayout>           
+        </GridLayout>
+        
+        <Button class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Add to Library" (tap)="close()"></Button>
 
           
 
-          <StarRating emptyBorderColor="white" emptyColor="white" filledBorderColor="black" filledColor="red" value="3" max="5"></StarRating>
+          <!-- <StarRating emptyBorderColor="white" emptyColor="white" filledBorderColor="black" filledColor="red" value="3" max="5"></StarRating> -->
 
 
-        <Button class="btn btn-primary" text="Add to Library" (tap)="close()"></Button>
     </StackLayout>
 
 </Page>
