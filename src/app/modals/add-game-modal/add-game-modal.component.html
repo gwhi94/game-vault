@@ -32,13 +32,44 @@
 
                 <Label>
                     <FormattedString>
-                        <Span fontSize="22" fontWeight="Bold" text="GENRE PLACEHOLDER "></Span>
-                        <Span fontSize="22" color="#1eb980" text="GENRE PLACEHOLDER"></Span>
-                    </FormattedString>
+                        <Span fontSize="22" fontWeight="Bold" text="GENRE(S):"></Span>
+                    </FormattedString>                                    
                 </Label>         
-            </StackLayout>           
+               
+               
+             <!--    <ScrollView *ngFor="let item of game.genre" orientation="horizontal">
+                    <GridLayout>
+                        <Label class="genre" fontSize="22" color="#1eb980" [text]="Test"></Label>
+                        <Label class="genre" fontSize="22" color="#1eb980" [text]="Test1"></Label>
+                    </GridLayout>
+                </ScrollView> -->
+
+               <!--  <ScrollView orientation="horizontal" >
+                    <StackLayout>
+                        <StackLayout *ngFor="let item of game.genre" width="100%" orientation="horizontal" height="100" > 
+                            <Label [text]="item" fontSize="22"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView> -->
+
+
+                <ScrollView orientation="horizontal">
+                    <StackLayout orientation="horizontal" height="35">
+                        <GridLayout *ngFor="let item of game.genre" rows="*, auto" columns="auto"> 
+                            <StackLayout row="1" class="list-group-item">
+                                <Label class="genre-item" fontSize="22" [text]="item" color="#1eb980"></Label>
+                            </StackLayout>
+                        </GridLayout> 
+                    </StackLayout>
+                </ScrollView>
+            
+            
+            
+            </StackLayout>      
+            
         </GridLayout>
         
+        <Label verticalAlignment="top" color="white">Test </Label>
         <Button class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Add to Library" (tap)="close()"></Button>
 
           
