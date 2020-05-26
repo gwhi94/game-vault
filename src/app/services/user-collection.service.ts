@@ -35,9 +35,12 @@ export class UserCollectionService {
   
   }
 
-  handleQuery(querySnapshot){
- 
-    return(querySnapshot.data().games)
+  handleQuery(querySnapshot){ 
+    if(querySnapshot.data()){
+      return(querySnapshot.data().games)
+    }else{
+      return null;
+    }
   }
 
 

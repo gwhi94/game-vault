@@ -3,55 +3,39 @@
     <StackLayout height="100%" width="100%" class="p-20 page modal-page"> 
         <Label class="h2 text-center" text="{{game.title}}" textWrap="true"></Label>
 
-        <GridLayout class="modal-grid" columns="auto, auto" rows="auto" width="100%" height="80%">           
-            <Image verticalAlignment="top" width="25%" row="0" col="0" src="{{game.image}}" stretch="aspectFit"></Image>
+        <GridLayout class="modal-grid" columns="auto, auto" rows="auto, auto" width="100%" height="80%">           
+            <Image  verticalAlignment="top" width="25%" row="0" col="0" src="{{game.image}}" stretch="aspectFit"></Image>
             
             <!-- <Label text="Game Data"  backgroundColor="green"></Label> -->
 
-            <StackLayout class="game-details" width="75%" height="100%" row="0" col="1" colSpan="2" orientation="vertical">
+            <StackLayout verticalAlignment="top" class="game-details" width="75%" height="25%" row="0" col="1" orientation="vertical">
                 <Label>
                     <FormattedString>
-                        <Span fontSize="22" fontWeight="Bold" text="Release Date: "></Span>
-                        <Span fontSize="22" color="#1eb980" text="{{game.releaseDate}}"></Span>
+                        <Span fontSize="20" fontWeight="Bold" text="Release Date: "></Span>
+                        <Span fontSize="18" color="#1eb980" text="{{game.releaseDate}}"></Span>
                     </FormattedString>
                 </Label>
 
                 <Label>
                     <FormattedString>
-                        <Span fontSize="22" fontWeight="Bold" text="Developer: "></Span>
-                        <Span fontSize="22" color="#1eb980" text="{{game.developer}}"></Span>
+                        <Span fontSize="20" fontWeight="Bold" text="Developer: "></Span>
+                        <Span fontSize="18" color="#1eb980" text="{{game.developer}}"></Span>
                     </FormattedString>
                 </Label>
 
                 <Label>
                     <FormattedString>
-                        <Span fontSize="22" fontWeight="Bold" text="Publisher: "></Span>
-                        <Span fontSize="22" color="#1eb980" text="{{game.publisher[0]}}"></Span>
+                        <Span fontSize="20" fontWeight="Bold" text="Publisher: "></Span>
+                        <Span fontSize="18" color="#1eb980" text="{{game.publisher[0]}}"></Span>
                     </FormattedString>
                 </Label>
 
                 <Label>
                     <FormattedString>
-                        <Span fontSize="22" fontWeight="Bold" text="GENRE(S):"></Span>
+                        <Span fontSize="20" fontWeight="Bold" text="Genres:"></Span>
                     </FormattedString>                                    
                 </Label>         
-               
-               
-             <!--    <ScrollView *ngFor="let item of game.genre" orientation="horizontal">
-                    <GridLayout>
-                        <Label class="genre" fontSize="22" color="#1eb980" [text]="Test"></Label>
-                        <Label class="genre" fontSize="22" color="#1eb980" [text]="Test1"></Label>
-                    </GridLayout>
-                </ScrollView> -->
-
-               <!--  <ScrollView orientation="horizontal" >
-                    <StackLayout>
-                        <StackLayout *ngFor="let item of game.genre" width="100%" orientation="horizontal" height="100" > 
-                            <Label [text]="item" fontSize="22"></Label>
-                        </StackLayout>
-                    </StackLayout>
-                </ScrollView> -->
-
+ 
 
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" height="35">
@@ -61,11 +45,19 @@
                             </StackLayout>
                         </GridLayout> 
                     </StackLayout>
-                </ScrollView>
-            
-            
-            
+                </ScrollView>         
+                
             </StackLayout>      
+
+            
+
+            <ScrollView orientation="vertical" row="1" rowSpan="2" colSpan="2" width="100%" height="50%">
+                <GridLayout rows="auto">
+                    <Label fontSize="18" row="0" text="{{game.description}}" textWrap="true"></Label>
+                    
+                </GridLayout>
+            </ScrollView>
+          
             
         </GridLayout>
         
