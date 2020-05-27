@@ -1,9 +1,9 @@
 
-<Page class="page__content page" shownModally="onShownModally">
+<Page class="page__content page" shownModally="onShownModally" xmlns:ui="nativescript-star-ratings" >
     <StackLayout height="100%" width="100%" class="p-20 page modal-page"> 
-        <Label class="h2 text-center" text="{{game.title}}" textWrap="true"></Label>
+        <Label class="h1 text-center" text="{{game.title}}" textWrap="true"></Label>
 
-        <GridLayout class="modal-grid" columns="auto, auto" rows="auto, auto" width="100%" height="80%">           
+        <GridLayout class="modal-grid" columns="auto, auto" rows="auto, auto, auto" width="100%" height="80%">           
             <Image  verticalAlignment="top" width="25%" row="0" col="0" src="{{game.image}}" stretch="aspectFit"></Image>
             
             <!-- <Label text="Game Data"  backgroundColor="green"></Label> -->
@@ -45,28 +45,29 @@
                             </StackLayout>
                         </GridLayout> 
                     </StackLayout>
-                </ScrollView>         
-                
+                </ScrollView>                       
             </StackLayout>      
 
             
-
             <ScrollView orientation="vertical" row="1" rowSpan="2" colSpan="2" width="100%" height="50%">
                 <GridLayout rows="auto">
                     <Label fontSize="18" row="0" text="{{game.description}}" textWrap="true"></Label>
                     
                 </GridLayout>
             </ScrollView>
-          
+
+         
+            
+            
             
         </GridLayout>
-        
-        <Label verticalAlignment="top" color="white">Test </Label>
+
+        <StackLayout class="m-5 m-t-10" verticalAlignment="bottom" width="90%">
+            <StarRating filledBorderColor="gold" filledColor="gold" style="width:240" class="m-x-auto" (valueChange)="setScore($event)" max="5" [value]="">
+            </StarRating>
+        </StackLayout>
+            
         <Button class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Add to Library" (tap)="close()"></Button>
-
-          
-
-          <!-- <StarRating emptyBorderColor="white" emptyColor="white" filledBorderColor="black" filledColor="red" value="3" max="5"></StarRating> -->
 
 
     </StackLayout>

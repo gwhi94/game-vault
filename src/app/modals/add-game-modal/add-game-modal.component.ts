@@ -19,6 +19,8 @@ export class AddGameModalComponent implements OnInit {
 
   game:GameDetail;
 
+  score = 0;
+
   constructor(private params: ModalDialogParams, private page:Page) {
 
   
@@ -43,6 +45,11 @@ export class AddGameModalComponent implements OnInit {
   onShownModally(args){
     console.log(args);
     console.log("shown");
+  }
+
+
+  setScore(event){
+    console.log(event);
   }
 
   close() {
