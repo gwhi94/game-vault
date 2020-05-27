@@ -44,9 +44,9 @@ export class UserCollectionService {
   }
 
 
-  addGameToUserCollection(game, rating){
+  addGameToUserCollection(game){
 
-    let obJtoUpdate = {title:game.title, rating:5}
+    let obJtoUpdate = {title:game.title, rating:game.rating}
     const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
     documentToUpdate.update({
       games: firestore.FieldValue.arrayUnion(obJtoUpdate)

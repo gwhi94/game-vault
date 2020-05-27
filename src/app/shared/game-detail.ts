@@ -6,6 +6,7 @@ export interface GameDetail {
     developer:string;
     publisher:Array<any>;
     description:string;
+    rating:Number;
 
 
 

@@ -45,12 +45,10 @@ export class AddGamesComponent implements OnInit {
   }
 
   inspectGame(item){
-    console.log(item);
 
     this.gameSearchService.fetchGameSecondary(item.title, item.platform)
       .subscribe(res => {
         let result = res['result'];
-        console.log(res['result']);
 
         this.detailGame = {
           title:result.title,
@@ -59,11 +57,12 @@ export class AddGamesComponent implements OnInit {
           image:result.image,
           developer:result.developer,
           publisher:result.publisher,
-          description:result.description
+          description:result.description,
+          rating:0
+          
         }
 
         this.showAddGameModal(this.detailGame).then(result => {
-          console.log(result);
           this.addGameToLibrary(result);
         });
         
@@ -85,7 +84,8 @@ export class AddGamesComponent implements OnInit {
   }
 
   addGameToLibrary(game){
-    this.userCollectionService.addGameToUserCollection(game, 0);
+    console.log("GAME", game)
+    this.userCollectionService.addGameToUserCollection(game);
       /* .then((result) => {
         console.log("Game Added", result)
       }) */

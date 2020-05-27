@@ -48,8 +48,13 @@ export class AddGameModalComponent implements OnInit {
   }
 
 
-  setScore(event){
-    console.log(event);
+  setScore(args: any){
+    this.score = Number(args.object.get('value'));
+    console.log(this.score);
+    this.game.rating = this.score;
+   
+
+    
   }
 
   close() {
