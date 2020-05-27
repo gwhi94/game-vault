@@ -15,28 +15,38 @@ const Color = require("tns-core-modules/color").Color;
   styleUrls: ['./add-game-modal.component.css']
 })
 export class AddGameModalComponent implements OnInit {
+  
   @ViewChild('root', {static:false}) root: ElementRef;
+  //this is not used anymore -- get rid
 
   game:GameDetail;
-
-  score = 0;
+  score:Number = 0;
 
   constructor(private params: ModalDialogParams, private page:Page) {
+    console.log("HIT MODAL");
+    console.log("params", this.params.context.context);
+    this.game = this.params.context.context;
+
+    if(this.game.rating){
+      this.score = this.game.rating;
+      console.log(this.game.rating);
+    }else{
+      this.score = 0;
+      console.log(this.game.rating);
+    }
+    
+    
+    this.page.on('loaded', args => {
+      (<Page>args.object).backgroundColor = new Color('#00000000');
+    });
 
   
    }
 
   ngOnInit(): void {
 
-    this.page.on('loaded', args => {
-      (<Page>args.object).backgroundColor = new Color('#00000000');
-    });
-   
-    
-    
-    console.log("params", this.params);
-    this.game = this.params.context.context;
-    console.log(this.game.description);
+    console.log("modal init");
+
   
   }
   

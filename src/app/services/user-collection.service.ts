@@ -3,8 +3,11 @@ import { firestore } from "nativescript-plugin-firebase";
 import { Observable, of } from 'rxjs'
 
 const firebase = require("nativescript-plugin-firebase/app");
-
 const firebasePlugin = require("nativescript-plugin-firebase");
+
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +48,6 @@ export class UserCollectionService {
 
 
   addGameToUserCollection(game){
-
     let obJtoUpdate = {title:game.title, rating:game.rating}
     const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
     documentToUpdate.update({

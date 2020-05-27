@@ -62,10 +62,10 @@ export class AddGamesComponent implements OnInit {
           
         }
 
-        this.showAddGameModal(this.detailGame).then(result => {
-          this.addGameToLibrary(result);
-        });
-        
+       this.checkForExisting()
+
+        //run checks here to see if user has already got this game in library
+
       }       
       );
 
@@ -73,7 +73,60 @@ export class AddGamesComponent implements OnInit {
 
   }
 
-  showAddGameModal(detailGame): Promise<any> {
+  checkForExisting(){
+    console.log("HIT");
+    this.userCollectionService.getUserCollection((games) => {
+      if(games){
+
+        let matchCount = 0;
+        var rating = 0;
+
+        for (let i = 0; i < games.length;i++){
+          if(this.detailGame.title == games[i].title){
+            console.log("Found Match");
+            matchCount ++;
+            rating = games[i].rating;
+
+          }
+        }
+
+        if(matchCount > 0){
+          console.log("Game Does Exist")
+          //this.popModal(rating);
+          this.showAddGameModal(this.detailGame, rating).then(result => {
+            this.addGameToLibrary(result);
+          });
+        }else if(matchCount == 0){
+          console.log("Game Does not Exist")
+          //this.popModal(null);
+          this.showAddGameModal(this.detailGame, null).then(result => {
+            this.addGameToLibrary(result);
+          });
+        }
+
+      }else{
+        console.log("Null games list");
+          
+      }
+    });
+  }
+
+  popModal(rating){
+    console.log("hit2", rating);
+    
+    
+
+  }
+
+  showAddGameModal(detailGame, rating): Promise<any> {
+    console.log("hit show modal");
+
+    if(rating){
+      detailGame.rating = rating;
+    }
+
+    console.log(detailGame);
+
     const options: ModalDialogOptions = {
       viewContainerRef: this.viewContainerRef,
       fullscreen: true,

@@ -58,7 +58,7 @@
         </GridLayout>
 
         <StackLayout row="2" colSpan="2" class="m-1 m-b-2 m-t-0 container-rounded">
-            <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240" class="m-x-auto" (valueChange)="setScore($event)" max="5" [value]="score">
+            <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240" class="m-x-auto" (valueChange)="setScore($event)" max="5" value="{{score}}">
             </StarRating>
         </StackLayout>
 
