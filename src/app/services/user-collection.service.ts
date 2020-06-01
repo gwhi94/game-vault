@@ -66,47 +66,44 @@ export class UserCollectionService {
 
     const gameTitleToUpdate = game.title;
     let games = [];
-
-    console.log("title", gameTitleToUpdate);
-
     
     oldDocument.get().then(doc => {
-      console.log("DATA", doc.data());
       doc.data().games.forEach(function(game){
         games.push(game);
       })
 
-      console.log("gamesarr", games);
-
       var updatedGamesList = games.filter(game => game.title !== gameTitleToUpdate);
-
-      console.log(updatedGamesList);
-
       var updatedGame = {title:game.title, rating:game.rating};
-
       updatedGamesList.push(updatedGame);
-
       const newDocument = firestore.collection('userCollection').doc(this.uid);
-
-
       newDocument.update({
         games:updatedGamesList
       })
 
-      
-
-
-
-
     })
-
-    
-
-
 
   }
 
-  deleteGameInUserCollection(){
+  deleteGameInUserCollection(game){
+    
+    const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
+
+    const gameTitleToDelete = game.title;
+    let games = [];
+
+    documentToUpdate.get().then(doc => {
+      doc.data().games.forEach(function(game){
+        games.push(game);
+      })
+
+      var updatedGamesList = games.filter(game => game.title !== gameTitleToDelete);
+
+      const newDocument = firestore.collection('userCollection').doc(this.uid);
+      newDocument.update({
+        games:updatedGamesList
+      })
+
+    })
     
   }
 }

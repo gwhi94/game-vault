@@ -3,7 +3,11 @@ const firebase = require("nativescript-plugin-firebase/app");
 const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 import { UserCollectionService } from "../services/user-collection.service";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
+import { registerElement } from "nativescript-angular/element-registry";
+import { CardView } from 'nativescript-cardview';
 
+
+registerElement("CardView", () => CardView);
 
 @Component({
   selector: 'ns-games',
@@ -14,7 +18,7 @@ import { SearchBar } from "tns-core-modules/ui/search-bar";
 export class GamesComponent implements OnInit {
 
   userId:string;
-  userGames = new ObservableArray();
+  userGames = [];
   loaded:Boolean = true;
 
 
@@ -28,6 +32,7 @@ export class GamesComponent implements OnInit {
 
     getUserGames(){
       this.userCollectionService.getUserCollection((games) => {
+        this.userGames.length = 0;
         if(games){
           games.forEach(game => {
               this.userGames.push(game);
@@ -39,6 +44,10 @@ export class GamesComponent implements OnInit {
         }
       });
 
+    }
+
+    deleteGame(game){
+      console.log("del", game);
     }
 
 }
