@@ -91,15 +91,16 @@ export class AddGamesComponent implements OnInit {
         }
 
         if(matchCount > 0){
-          console.log("Game Does Exist")
+          console.log("Game Does Exist");
           //this.popModal(rating);
           this.showAddGameModal(this.detailGame, rating).then(result => {
-            this.addGameToLibrary(result);
+ 
+            this.updateGameInLibrary(result);
           });
         }else if(matchCount == 0){
-          console.log("Game Does not Exist")
+          console.log("Game Does not Exist");
           //this.popModal(null);
-          this.showAddGameModal(this.detailGame, null).then(result => {
+          this.showAddGameModal(this.detailGame, null).then(result => {      
             this.addGameToLibrary(result);
           });
         }
@@ -136,8 +137,15 @@ export class AddGamesComponent implements OnInit {
 
   }
 
+  updateGameInLibrary(game){
+    this.userCollectionService.updateGameInUserCollection(game);
+
+  }
+
+
+
   addGameToLibrary(game){
-    console.log("GAME", game)
+    console.log("GjME", game)
     this.userCollectionService.addGameToUserCollection(game);
       /* .then((result) => {
         console.log("Game Added", result)

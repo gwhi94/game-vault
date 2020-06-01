@@ -1,5 +1,6 @@
-import { Component, OnInit , ViewChild, ElementRef} from '@angular/core';
+import { Component, OnInit , ViewChild, ElementRef, NgZone} from '@angular/core';
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
+
 
 import * as application from "tns-core-modules/application";
 
@@ -21,33 +22,38 @@ export class AddGameModalComponent implements OnInit {
 
   game:GameDetail;
   score:Number = 0;
+  existingGame = false;
 
-  constructor(private params: ModalDialogParams, private page:Page) {
+  constructor(public zone:NgZone, private params: ModalDialogParams, private page:Page) {
+
+    //workaround for nativescript bug https://github.com/NativeScript/nativescript-angular/issues/1014
+      setTimeout(() => {
+        this.zone.run(() => this.loadModal())
+    });
+
+   }
+
+  ngOnInit() {}
+
+  loadModal(){
+    
+
     console.log("HIT MODAL");
     console.log("params", this.params.context.context);
     this.game = this.params.context.context;
 
+    //if rating is passed then game exists.
     if(this.game.rating){
+      this.existingGame = true;
       this.score = this.game.rating;
       console.log(this.game.rating);
     }else{
+      this.existingGame = false;
       this.score = 0;
       console.log(this.game.rating);
     }
     
-    
-    this.page.on('loaded', args => {
-      (<Page>args.object).backgroundColor = new Color('#00000000');
-    });
 
-  
-   }
-
-  ngOnInit(): void {
-
-    console.log("modal init");
-
-  
   }
   
 
