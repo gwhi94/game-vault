@@ -37,7 +37,6 @@ export class AddGameModalComponent implements OnInit {
 
   loadModal(){
     
-
     console.log("HIT MODAL");
     console.log("params", this.params.context.context);
     this.game = this.params.context.context;
@@ -75,6 +74,6 @@ export class AddGameModalComponent implements OnInit {
 
   close() {
     this.params.closeCallback(this.game);
-}
+  }
 
 }

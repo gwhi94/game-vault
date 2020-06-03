@@ -62,6 +62,7 @@ export class UserCollectionService {
   }
 
   updateGameInUserCollection(game){
+    //we have to pull out all games and delete the specific one and re upload, due to firebase limitations
     const oldDocument = firestore.collection("userCollection").doc(this.uid);
 
     const gameTitleToUpdate = game.title;

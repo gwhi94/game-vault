@@ -1,0 +1,20 @@
+
+<Page class="page__content page" shownModally="onShownModally" xmlns:ui="nativescript-star-ratings" >
+    <StackLayout height="250" width="100%" class="p-15 page"> 
+        <Label class="h1 text-center" text="{{game?.title}}" textWrap="true"></Label>
+       
+       
+        <StackLayout row="2" colSpan="2" class="m-1 m-b-4 m-t-3 container-rounded">
+            <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240" class="m-x-auto" (valueChange)="setScore($event)" max="5" value="{{score}}">
+            </StarRating>
+        </StackLayout>
+        
+        <GridLayout columns="*,5,*" rows="*" height="auto" width="100%">
+            <Button row="0" col="0" class="btn btn-primary ml-2" width="100%" text="Update Review" (tap)="changeScore()"></Button>
+            <Button row="0" col="2" class="btn bg-danger" width="100%" text="Delete Game" (tap)="deleteGame()"></Button>
+        </GridLayout>
+    </StackLayout>
+
+
+</Page>
+

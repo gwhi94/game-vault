@@ -2,6 +2,7 @@ import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { GamesComponent } from './games.component';
+import { CardOptionsModalComponent } from '../modals/card-options-modal/card-options-modal.component';
 
 
 
@@ -16,7 +17,11 @@ import { GamesComponent } from './games.component';
         ])
   ],
   declarations:[
-    GamesComponent
+    GamesComponent,
+    CardOptionsModalComponent
+  ],
+  entryComponents : [
+    CardOptionsModalComponent
   ],
   schemas: [NO_ERRORS_SCHEMA]
 })

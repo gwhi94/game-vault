@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewContainerRef  } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 const firebase = require("nativescript-plugin-firebase/app");
 const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 import { UserCollectionService } from "../services/user-collection.service";
 import { SearchBar } from "tns-core-modules/ui/search-bar";
 import { registerElement } from "nativescript-angular/element-registry";
 import { CardView } from 'nativescript-cardview';
-
+import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
+import { CardOptionsModalComponent } from '../modals/card-options-modal/card-options-modal.component';
 
 registerElement("CardView", () => CardView);
 
@@ -22,7 +23,7 @@ export class GamesComponent implements OnInit {
   loaded:Boolean = true;
 
 
-  constructor(private userCollectionService:UserCollectionService) { }
+  constructor(private userCollectionService:UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService) { }
 
     ngOnInit(): void {
       this.getUserGames();
@@ -49,6 +50,17 @@ export class GamesComponent implements OnInit {
     deleteGame(game){
       console.log("del", game);
     }
+    
+    cardOptions(game){
+      console.log("Fired", game);
+      const options: ModalDialogOptions = {
+        viewContainerRef: this.viewContainerRef,
+        fullscreen: false,
+        context: {context:game}
+    };
+    return this.modalService.showModal(CardOptionsModalComponent, options);
+    }
+
 
 }
 
