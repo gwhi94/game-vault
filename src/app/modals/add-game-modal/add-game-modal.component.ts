@@ -2,10 +2,12 @@ import { Component, OnInit , ViewChild, ElementRef, NgZone} from '@angular/core'
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
 
 
+
 import * as application from "tns-core-modules/application";
 
 import { GameDetail } from '../../shared/game-detail';
 import { Page } from 'tns-core-modules/ui/page/page';
+import { UserCollectionService } from '~/app/services/user-collection.service';
 
 declare var android: any;
 const Color = require("tns-core-modules/color").Color;
@@ -24,7 +26,7 @@ export class AddGameModalComponent implements OnInit {
   score:Number = 0;
   existingGame = false;
 
-  constructor(public zone:NgZone, private params: ModalDialogParams, private page:Page) {
+  constructor(public zone:NgZone, private params: ModalDialogParams, private page:Page, private userCollectionService:UserCollectionService) {
 
     //workaround for nativescript bug https://github.com/NativeScript/nativescript-angular/issues/1014
       setTimeout(() => {
@@ -60,8 +62,19 @@ export class AddGameModalComponent implements OnInit {
 
   }
 
+  addGameToLibrary(){
+    this.userCollectionService.addGameToUserCollection(this.game);
+    this.close();
+
+  }
+
+  updateGameInLibrary(){
+    this.userCollectionService.updateGameInUserCollection(this.game);
+    this.close();
+  }
+
   close() {
-    this.params.closeCallback(this.game);
+    this.params.closeCallback();
   }
 
 }

@@ -28,7 +28,8 @@ export class UserCollectionService {
  
    }
 
-  getUserCollection(callback:Function) {    
+  getUserCollection(callback:Function) {   
+    console.log("Service called"); 
 
     const usersDocument = firestore.collection("userCollection").doc(this.uid);
    

@@ -39,7 +39,7 @@
 
                 <ScrollView orientation="horizontal">
                     <StackLayout orientation="horizontal" height="35">
-                        <GridLayout *ngFor="let item of game.genre" rows="*, auto" columns="auto"> 
+                        <GridLayout *ngFor="let item of game?.genre" rows="*, auto" columns="auto"> 
                             <StackLayout row="1" class="list-group-item">
                                 <Label class="genre-item" fontSize="22" [text]="item" color="#1eb980"></Label>
                             </StackLayout>
@@ -61,9 +61,9 @@
             </StarRating>
         </StackLayout>
 
-        <Button *ngIf="!existingGame" class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Add to Library" (tap)="close()"></Button>
+        <Button *ngIf="!existingGame" class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Add to Library" (tap)="addGameToLibrary()"></Button>
 
-        <Button *ngIf="existingGame" class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Update Review" (tap)="close()"></Button>
+        <Button *ngIf="existingGame" class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Update Review" (tap)="updateGameInLibrary()"></Button>#
 
     </StackLayout>
 

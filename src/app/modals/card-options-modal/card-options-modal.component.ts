@@ -55,7 +55,7 @@ export class CardOptionsModalComponent implements OnInit {
 
 
   close() {
-    this.params.closeCallback(this.game);
+    this.params.closeCallback();
   }
 
 }
