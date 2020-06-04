@@ -49,6 +49,7 @@ export class AddGamesComponent implements OnInit {
     this.gameSearchService.fetchGameSecondary(item.title, item.platform)
       .subscribe(res => {
         let result = res['result'];
+        console.log("REZ", result);
 
         this.detailGame = {
           title:result.title,
@@ -77,7 +78,6 @@ export class AddGamesComponent implements OnInit {
     console.log("HIT");
     this.userCollectionService.getUserCollection((games) => {
       if(games){
-
         let matchCount = 0;
         var rating = 0;
 
@@ -100,6 +100,7 @@ export class AddGamesComponent implements OnInit {
         }else if(matchCount == 0){
           console.log("Game Does not Exist");
           //this.popModal(null);
+          console.log("Detail game", this.detailGame);
           this.showAddGameModal(this.detailGame, null).then(result => {      
             this.addGameToLibrary(result);
           });

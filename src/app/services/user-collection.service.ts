@@ -48,7 +48,11 @@ export class UserCollectionService {
 
 
   addGameToUserCollection(game){
-    let obJtoUpdate = {title:game.title, rating:game.rating}
+    let dateAdded = new Date(Date.now()).toLocaleString().split(',')[0];
+
+    console.log("DATE", new Date(Date.now()).toLocaleString());
+    
+    let obJtoUpdate = {title:game.title, rating:game.rating, dateAdded:dateAdded}
     const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
     documentToUpdate.update({
       games: firestore.FieldValue.arrayUnion(obJtoUpdate)
@@ -86,9 +90,8 @@ export class UserCollectionService {
   }
 
   deleteGameInUserCollection(game){
-    
+   
     const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
-
     const gameTitleToDelete = game.title;
     let games = [];
 

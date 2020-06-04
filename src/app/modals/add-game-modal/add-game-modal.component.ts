@@ -51,25 +51,13 @@ export class AddGameModalComponent implements OnInit {
       this.score = 0;
       console.log(this.game.rating);
     }
-    
-
+ 
   }
-  
-
-
-  onShownModally(args){
-    console.log(args);
-    console.log("shown");
-  }
-
-
   setScore(args: any){
     this.score = Number(args.object.get('value'));
     console.log(this.score);
     this.game.rating = this.score;
-   
 
-    
   }
 
   close() {

@@ -47,10 +47,7 @@ export class GamesComponent implements OnInit {
 
     }
 
-    deleteGame(game){
-      console.log("del", game);
-    }
-    
+  
     cardOptions(game){
       console.log("Fired", game);
       const options: ModalDialogOptions = {
