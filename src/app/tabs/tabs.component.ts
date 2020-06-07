@@ -14,7 +14,7 @@ export class TabsComponent implements OnInit {
     private activeRoute: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.routerExtension.navigate([{ outlets: { gamesTab: ["games"], addGamesTab: ["addGames"] } }], { relativeTo: this.activeRoute });
+    this.routerExtension.navigate([{ outlets: { gamesTab: ["games"],topGamesTab: ["topGames"], addGamesTab: ["addGames"] } }], { relativeTo: this.activeRoute });
   }
 
 }

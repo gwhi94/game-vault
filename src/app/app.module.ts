@@ -7,8 +7,6 @@ import { AppRoutingModule, COMPONENTS  } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 
 
-
-
 @NgModule({
     bootstrap: [
         AppComponent
@@ -21,11 +19,9 @@ import { AppComponent } from "./app.component";
     ],
     declarations: [
         AppComponent,
-        ...COMPONENTS,
+        ...COMPONENTS
         
-        
-        
-        
+
     ],
     schemas: [
         NO_ERRORS_SCHEMA

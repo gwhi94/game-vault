@@ -325,4 +325,23 @@ $muted-grey:lighten(#1b1b1b, 5%);
     color: #000000;
     }
     
+    .cardStyle {
+        border-color:#1eb980;
+        background-color: #424242;
+        color: #fff;
+        height:200px;
+        padding:15px;
+      }
+    
+      .inner-card {
+          padding:10px;
+          
+      }
+    
+      .inner-card-game {
+        border-left-width: 3;
+        border-color: #ababab;
+        padding:20px;
+        
+      }
     

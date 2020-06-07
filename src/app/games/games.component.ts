@@ -47,6 +47,11 @@ export class GamesComponent implements OnInit {
 
     }
 
+    filterGames(args){
+      const searchBar = args.object as SearchBar;
+      console.log(`Input changed! New value: ${searchBar.text}`);
+    }
+
   
     cardOptions(game){
       console.log("Fired", game);

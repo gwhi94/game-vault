@@ -49,11 +49,10 @@ export class UserCollectionService {
 
 
   addGameToUserCollection(game){
-    let dateAdded = new Date(Date.now()).toLocaleString().split(',')[0];
+    let date = new Date().toLocaleDateString();
 
-    console.log("DATE", new Date(Date.now()).toLocaleString());
-    
-    let obJtoUpdate = {title:game.title, rating:game.rating, dateAdded:dateAdded}
+ 
+    let obJtoUpdate = {title:game.title, rating:game.rating, dateAdded:date}
     const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
     documentToUpdate.update({
       games: firestore.FieldValue.arrayUnion(obJtoUpdate)

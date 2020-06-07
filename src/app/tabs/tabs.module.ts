@@ -23,7 +23,13 @@ import { TabsComponent } from "./tabs.component";
                       outlet: "addGamesTab",
                       component: NSEmptyOutletComponent,
                       loadChildren: () => import("~/app/add-games/add-games.module").then(m => m.AddGamesModule),
-                  }
+                  },
+                  {
+                    path: "topGames",
+                    outlet: "topGamesTab",
+                    component: NSEmptyOutletComponent,
+                    loadChildren: () => import("~/app/top-games/top-games.module").then(m => m.TopGamesModule),
+                }
               ]
           }
       ])

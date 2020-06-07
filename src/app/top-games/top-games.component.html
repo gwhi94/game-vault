@@ -1,18 +1,16 @@
 <ActionBar class="action-bar">
-    <Label class="label" text="My Library"></Label>
+    <Label class="label" text="Top Games"></Label>
 </ActionBar>
 
 
-
 <GridLayout class="page__content page">
-    <StackLayout *ngFor="let item of userGames">   
-        <SearchBar hint="Search your library..."
-            [text]="searchPhrase"
-            (textChange)="filterGames($event)"
-            >
-        </SearchBar>
+    <!-- <SearchBar hint="Search your library..."
+    [text]="searchPhrase"
+     >
+    </SearchBar> -->
     <ScrollView>
         <StackLayout>
+            <StackLayout *ngFor="let item of userGames.slice(0,10)">   
                 <CardView class="cardStyle" margin="10" elevation="40" radius="10" ripple="true" (tap)="cardOptions(item)">
                     <StackLayout class="inner-card">
                         <GridLayout columns="6*,*" rows="auto, auto" width="auto" height="100%" class="inner-card-game">                  

@@ -40,24 +40,24 @@ export class AddGameModalComponent implements OnInit {
   loadModal(){
     
     console.log("HIT MODAL");
-    console.log("params", this.params.context.context);
     this.game = this.params.context.context;
 
     //if rating is passed then game exists.
-    if(this.game.rating){
-      this.existingGame = true;
-      this.score = this.game.rating;
-      console.log(this.game.rating);
-    }else{
-      this.existingGame = false;
-      this.score = 0;
-      console.log(this.game.rating);
-    }
+    if(this.game){
+      if(this.game.rating){
+        this.existingGame = true;
+        this.score = this.game.rating;
+        console.log(this.game.rating);
+      }else{
+        this.existingGame = false;
+        this.score = 0;
+        console.log(this.game.rating);
+      }
+    }  
  
   }
   setScore(args: any){
     this.score = Number(args.object.get('value'));
-    console.log(this.score);
     this.game.rating = this.score;
 
   }
