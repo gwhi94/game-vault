@@ -1,9 +1,5 @@
 @import "~@nativescript/theme/core";
 @import "~@nativescript/theme/blue";
-
-
-
-
 // Place any CSS rules you want to apply on both iOS and Android here.
 // This is where the vast majority of your CSS code goes.
 
@@ -46,6 +42,15 @@ $muted-grey:lighten(#1b1b1b, 5%);
 }
 
 // Common page class
+
+.app-search {
+    border-color: #5c6bc0;
+    border-width: 2;
+    border-radius:15px;
+    font-size:15px;
+}
+
+
 .page__content {
     &-icon,
     &-placeholder {
@@ -344,4 +349,5 @@ $muted-grey:lighten(#1b1b1b, 5%);
         padding:20px;
         
       }
-    
+
+

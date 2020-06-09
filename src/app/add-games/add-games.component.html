@@ -5,7 +5,10 @@
 
 <GridLayout class="page__content page">
     <StackLayout>
-        <SearchBar hint="Search for a game..."
+        <SearchBar class="app-search" hint="Search for a game..."
+        color="#1eb980" 
+        backgroundColor="#707070"
+        [text]="searchPhrase"
         [text]="searchPhrase"
         (submit)="onSubmit($event)" >
         </SearchBar>

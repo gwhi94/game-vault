@@ -3,7 +3,7 @@ import { NativeScriptCommonModule } from 'nativescript-angular/common';
 import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { GamesComponent } from './games.component';
 import { CardOptionsModalComponent } from '../modals/card-options-modal/card-options-modal.component';
-
+import { SearchPipe } from './games.component';
 
 
 @NgModule({
@@ -18,7 +18,8 @@ import { CardOptionsModalComponent } from '../modals/card-options-modal/card-opt
   ],
   declarations:[
     GamesComponent,
-    CardOptionsModalComponent
+    CardOptionsModalComponent,
+    SearchPipe
   ],
   entryComponents : [
     CardOptionsModalComponent

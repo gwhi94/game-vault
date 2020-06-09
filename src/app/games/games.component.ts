@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+import { Component, OnInit, ViewContainerRef,  PipeTransform, Pipe} from '@angular/core';
 const firebase = require("nativescript-plugin-firebase/app");
 const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 import { UserCollectionService } from "../services/user-collection.service";
@@ -7,8 +7,28 @@ import { registerElement } from "nativescript-angular/element-registry";
 import { CardView } from 'nativescript-cardview';
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { CardOptionsModalComponent } from '../modals/card-options-modal/card-options-modal.component';
+import { pipe } from 'rxjs';
 
 registerElement("CardView", () => CardView);
+
+@Pipe({
+  name:'searchPipe'
+})
+export class SearchPipe implements PipeTransform {
+  transform(items: any[], searchPhrase: string): any[] {
+    console.log("hit");
+
+    if(!items) return[];
+    if(!searchPhrase) return items;
+    searchPhrase = searchPhrase.toLowerCase();
+    console.log("sp", searchPhrase);
+    
+      return items.filter(item => {
+        return item.title.toLowerCase().includes(searchPhrase)  
+     
+      });
+  }
+}
 
 @Component({
   selector: 'ns-games',
@@ -22,13 +42,21 @@ export class GamesComponent implements OnInit {
   userGames = [];
   loaded:Boolean = true;
 
-
+  searchPhrase = '';
+  
+  
   constructor(private userCollectionService:UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService) { }
+  
+  
+  ngOnInit(): void {
+    const gamesFromSource = []; 
+    this.getUserGames();
+    
+    
+    }
 
-    ngOnInit(): void {
-      this.getUserGames();
-
-
+    searchBarLoaded(args){
+      
     }
 
     getUserGames(){
@@ -50,6 +78,11 @@ export class GamesComponent implements OnInit {
     filterGames(args){
       const searchBar = args.object as SearchBar;
       console.log(`Input changed! New value: ${searchBar.text}`);
+
+      this.searchPhrase = searchBar.text;
+
+
+      
     }
 
   
