@@ -55,9 +55,14 @@ export class GamesComponent implements OnInit {
     
     }
 
-    searchBarLoaded(args){
-      
+    onDelete(){
+
     }
+
+   onNavBtnTap(){
+      // This code will be called only in Android.
+      console.log("Navigation button tapped!");
+  }
 
     getUserGames(){
       this.userCollectionService.getUserCollection((games) => {
