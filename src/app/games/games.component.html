@@ -1,38 +1,49 @@
-<ActionBar class="action-bar">
-    <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
-    <Label class="label" text="My Library"></Label>
-    <ActionItem style="color:#e94236 !important;" class="log-out-menu" tap="onDelete" text="Log Out"></ActionItem>
-</ActionBar>
 
+<Page xmlns:ui="nativescript-star-ratings">
+    <GridLayout class="page__content page" rows="50,40, *">
+            <ActionBar style="color: #1eb980 !important; background-color: #1b1b1b;">
+                <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
+                <Label class="label" text="My Library"></Label>
+                <ActionItem color="#1eb980" tap="onDelete" text="Log Out"></ActionItem>
+            </ActionBar>
+        
+        <SearchBar class="app-search" row="0" hint="Search your library..."
+            color="#1eb980" 
+            backgroundColor="#707070"
+            [text]="searchPhrase"
+            (textChange)="filterGames($event)"
+            (loaded)="searchBarLoaded($event)"
+            >
+        </SearchBar>
 
-<GridLayout class="page__content page" rows="50, *">
-    
-    <SearchBar class="app-search" row="0" hint="Search your library..."
-        color="#1eb980" 
-        backgroundColor="#707070"
-        [text]="searchPhrase"
-        (textChange)="filterGames($event)"
-        (loaded)="searchBarLoaded($event)"
-        >
-    </SearchBar>
-    
-    <ScrollView row="1">
-        <StackLayout>
-            <StackLayout *ngFor="let item of userGames | searchPipe : searchPhrase">
-                    <CardView class="cardStyle" margin="10" elevation="40" radius="10" ripple="true" (tap)="cardOptions(item)">
-                        <StackLayout class="inner-card">
-                            <GridLayout columns="6*,*" rows="auto, auto" width="auto" height="100%" class="inner-card-game">                  
-                                <Label row="0" col="0" class="list-group-item-heading" [text]="item.title"></Label>                             
-                                <Label row="1" col="0">
-                                    <FormattedString>
-                                        <Span fontSize="20" fontWeight="Bold" text="Date added: "></Span>
-                                        <Span fontSize="18" color="#1eb980" text="{{item.dateAdded}}"></Span>
-                                    </FormattedString>
-                                </Label>                       
-                            </GridLayout>                        
-                        </StackLayout>
-                    </CardView>
-            </StackLayout>  
-         </StackLayout>    
-    </ScrollView>
-</GridLayout>
+        <StackLayout row="1" class="hud" orientation="horizontal">
+            <Label>
+                <FormattedString>
+                    <Span fontSize="17" fontWeight="Bold" text="Total Games in Library: "></Span>
+                    <Span fontSize="17" color="#1eb980" text="{{userGames.length}}"></Span>
+                </FormattedString>
+            </Label>  
+            <Button style="background-color: #ff7043;float:right" class="btn btn-sortByPop" text="Top Rated"></Button>           
+        </StackLayout>
+        
+        <ScrollView row="2">
+            <StackLayout>
+                <StackLayout *ngFor="let item of userGames | searchPipe : searchPhrase">
+                        <CardView class="cardStyle" margin="10" elevation="40" radius="10" ripple="true" (tap)="cardOptions(item)">
+                            <StackLayout class="inner-card">
+                                <GridLayout columns="6*,*" rows="auto, auto" width="auto" height="100%" class="inner-card-game" [ngStyle]="{'border-color': borderFunc(item)}">                  
+                                    <Label row="0" col="0" class="list-group-item-heading" [text]="item.title"></Label>                             
+                                    <Label row="1" col="0">
+                                        <FormattedString>
+                                            <Span fontSize="20" fontWeight="Bold" text="Date added: "></Span>
+                                            <Span fontSize="18" color="#1eb980" text="{{item.dateAdded}}"></Span>
+                                        </FormattedString>
+                                    </Label>             
+                                </GridLayout>                        
+                            </StackLayout>
+                        </CardView>
+                </StackLayout>  
+            </StackLayout>    
+        </ScrollView>
+    </GridLayout>
+</Page>

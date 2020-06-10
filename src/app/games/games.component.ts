@@ -80,6 +80,7 @@ export class GamesComponent implements OnInit {
 
     }
 
+
     filterGames(args){
       const searchBar = args.object as SearchBar;
       console.log(`Input changed! New value: ${searchBar.text}`);
@@ -91,7 +92,10 @@ export class GamesComponent implements OnInit {
     }
 
   
-    cardOptions(game){
+    cardOptions(game, newRating){
+      if(newRating){
+        console.log("new rating", Number(newRating.object.get('value')))
+      }
       console.log("Fired", game);
       const options: ModalDialogOptions = {
         viewContainerRef: this.viewContainerRef,
@@ -101,7 +105,15 @@ export class GamesComponent implements OnInit {
     return this.modalService.showModal(CardOptionsModalComponent, options);
     }
 
-
+    borderFunc(game){
+      if(game.rating <=1){
+        return '#b71c1c'
+      }else if(game.rating <=3){
+        return '#e94236'
+      }else if(game.rating <=5){
+        return '#1eb980'
+      }
+    }
 }
 
   
