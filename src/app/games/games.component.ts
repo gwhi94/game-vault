@@ -41,8 +41,8 @@ export class GamesComponent implements OnInit {
   userId:string;
   userGames = [];
   loaded:Boolean = true;
-
   searchPhrase = '';
+  loading = true;
   
   
   constructor(private userCollectionService:UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService) { }
@@ -51,18 +51,10 @@ export class GamesComponent implements OnInit {
   ngOnInit(): void {
     const gamesFromSource = []; 
     this.getUserGames();
-    
-    
-    }
-
-    onDelete(){
-
-    }
-
-   onNavBtnTap(){
-      // This code will be called only in Android.
-      console.log("Navigation button tapped!");
+     
   }
+
+
 
     getUserGames(){
       this.userCollectionService.getUserCollection((games) => {
@@ -71,6 +63,7 @@ export class GamesComponent implements OnInit {
           games.forEach(game => {
               this.userGames.push(game);
           })
+          //this.loading = false;
         }else{
           console.log("User games is null");
           this.getUserGames();
@@ -83,20 +76,15 @@ export class GamesComponent implements OnInit {
 
     filterGames(args){
       const searchBar = args.object as SearchBar;
-      console.log(`Input changed! New value: ${searchBar.text}`);
-
       this.searchPhrase = searchBar.text;
-
-
-      
+    
     }
 
-  
     cardOptions(game, newRating){
       if(newRating){
         console.log("new rating", Number(newRating.object.get('value')))
       }
-      console.log("Fired", game);
+
       const options: ModalDialogOptions = {
         viewContainerRef: this.viewContainerRef,
         fullscreen: false,
@@ -113,6 +101,10 @@ export class GamesComponent implements OnInit {
       }else if(game.rating <=5){
         return '#1eb980'
       }
+    }
+
+    sortByHighest(){
+      this.userGames.sort((a, b) => b.rating - a.rating);
     }
 }
 

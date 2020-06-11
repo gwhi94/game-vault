@@ -10,21 +10,21 @@
     </SearchBar> -->
     <ScrollView>
         <StackLayout>
-            <StackLayout *ngFor="let item of userGames.slice(0,10)">   
-                <CardView class="cardStyle" margin="10" elevation="40" radius="10" ripple="true" (tap)="cardOptions(item)">
-                    <StackLayout class="inner-card">
-                        <GridLayout columns="6*,*" rows="auto, auto" width="auto" height="100%" class="inner-card-game">                  
-                            <Label row="0" col="0" class="list-group-item-heading" [text]="item.title"></Label>                             
-                            <Label row="1" col="0">
-                                <FormattedString>
-                                    <Span fontSize="20" fontWeight="Bold" text="Date added: "></Span>
-                                    <Span fontSize="18" color="#1eb980" text="{{item.dateAdded}}"></Span>
-                                </FormattedString>
-                            </Label>                       
-                        </GridLayout>                        
-                    </StackLayout>
-                </CardView>
-            </StackLayout>      
-        </StackLayout>
+            <StackLayout *ngFor="let item of userGames.slice(0,10)">
+                    <CardView class="cardStyle" margin="10" elevation="40" radius="10" ripple="true" (tap)="cardOptions(item)">
+                        <StackLayout class="inner-card">
+                            <GridLayout columns="6*,*" rows="auto, auto" width="auto" height="100%" class="inner-card-game" [ngStyle]="{'border-color': borderFunc(item)}">                  
+                                <Label row="0" col="0" class="list-group-item-heading" [text]="item.title"></Label>                             
+                                <Label row="1" col="0">
+                                    <FormattedString>
+                                        <Span fontSize="20" fontWeight="Bold" text="Date added: "></Span>
+                                        <Span fontSize="18" color="#1eb980" text="{{item.dateAdded}}"></Span>
+                                    </FormattedString>
+                                </Label>             
+                            </GridLayout>                        
+                        </StackLayout>
+                    </CardView>
+            </StackLayout>  
+        </StackLayout>    
     </ScrollView>
 </GridLayout>

@@ -1,32 +1,36 @@
 
 <Page xmlns:ui="nativescript-star-ratings">
+    
+    
     <GridLayout class="page__content page" rows="50,40, *">
-            <ActionBar style="color: #1eb980 !important; background-color: #1b1b1b;">
-                <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
-                <Label class="label" text="My Library"></Label>
-                <ActionItem color="#1eb980" tap="onDelete" text="Log Out"></ActionItem>
-            </ActionBar>
+        <ActionBar style="color: #1eb980 !important; background-color: #1b1b1b;">
+            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
+            <Label class="label" text="My Library"></Label>
+            <ActionItem color="#1eb980" tap="onDelete" text="Log Out"></ActionItem>
+        </ActionBar>
         
-        <SearchBar class="app-search" row="0" hint="Search your library..."
+        <ActivityIndicator rowSpan="3" color="#1eb980" width="100" height="100" verticalAlignment="center" *ngIf="loading" [busy]="loading"></ActivityIndicator>
+           
+        
+        <SearchBar *ngIf="!loading" class="app-search" row="0" hint="Search your library..."
             color="#1eb980" 
             backgroundColor="#707070"
             [text]="searchPhrase"
-            (textChange)="filterGames($event)"
-            (loaded)="searchBarLoaded($event)"
+            (textChange)="filterGames($event)"        
             >
         </SearchBar>
 
-        <StackLayout row="1" class="hud" orientation="horizontal">
-            <Label>
+        <GridLayout *ngIf="!loading" rows="auto" columns="*" row="1" class="hud" width="100%">
+            <Label row="0" verticalAlignment="center"  horizontalAlignment="left">
                 <FormattedString>
                     <Span fontSize="17" fontWeight="Bold" text="Total Games in Library: "></Span>
                     <Span fontSize="17" color="#1eb980" text="{{userGames.length}}"></Span>
                 </FormattedString>
             </Label>  
-            <Button style="background-color: #ff7043;float:right" class="btn btn-sortByPop" text="Top Rated"></Button>           
-        </StackLayout>
+            <Button (tap)="sortByHighest()" row="0" verticalAlignment="center" horizontalAlignment="right" height="70%" style="background-color: #ff7043;" class="btn btn-sortByPop" text="Top Rated"></Button>           
+        </GridLayout>
         
-        <ScrollView row="2">
+        <ScrollView *ngIf="!loading" row="2">
             <StackLayout>
                 <StackLayout *ngFor="let item of userGames | searchPipe : searchPhrase">
                         <CardView class="cardStyle" margin="10" elevation="40" radius="10" ripple="true" (tap)="cardOptions(item)">

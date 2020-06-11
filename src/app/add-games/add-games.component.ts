@@ -22,6 +22,7 @@ export class AddGamesComponent implements OnInit {
   detailGame: GameDetail;
   rating = 0;
   userGames = [];
+  loading = true;
 
   constructor(private userCollectionService: UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService,private gameSearchService:GameSearchService) { }
 

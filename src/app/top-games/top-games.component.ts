@@ -19,6 +19,17 @@ export class TopGamesComponent implements OnInit {
 
   }
 
+  borderFunc(game){
+    if(game.rating <=1){
+      return '#b71c1c'
+    }else if(game.rating <=3){
+      return '#e94236'
+    }else if(game.rating <=5){
+      return '#1eb980'
+    }
+  }
+
+
   getUserGames(){
     this.userCollectionService.getUserCollection((games => {
       if(games){
@@ -33,7 +44,7 @@ export class TopGamesComponent implements OnInit {
   rankGames(){
     console.log("USER", this.userGames);
 
-    this.userGames.sort((a, b) => a.rating + b.rating);
+    this.userGames.sort((a, b) => b.rating - a.rating);
 
     console.log("after sort", this.userGames);
 
