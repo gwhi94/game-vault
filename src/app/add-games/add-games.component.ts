@@ -22,7 +22,7 @@ export class AddGamesComponent implements OnInit {
   detailGame: GameDetail;
   rating = 0;
   userGames = [];
-  loading = true;
+  loading = false;
 
   constructor(private userCollectionService: UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService,private gameSearchService:GameSearchService) { }
 
@@ -33,11 +33,20 @@ export class AddGamesComponent implements OnInit {
    
   }
 
+  loadedSB(args) { 
+    setTimeout(() => {
+        args.object.dismissSoftInput();
+    }, 100)
+    
+}
+
   onSubmit(args){
+    this.loading = true;
     const searchBar = args.object as SearchBar;
     this.gameSearchService.fetchGamesPrimary(searchBar.text)
       .subscribe(res => {
         this.searchGames = res['result'];
+        this.loading = false;
       })
 
   }

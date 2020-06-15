@@ -16,7 +16,8 @@
             color="#1eb980" 
             backgroundColor="#707070"
             [text]="searchPhrase"
-            (textChange)="filterGames($event)"        
+            (textChange)="filterGames($event)" 
+            (loaded)="loadedSB($event)"       
             >
         </SearchBar>
 

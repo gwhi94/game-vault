@@ -54,6 +54,13 @@ export class GamesComponent implements OnInit {
      
   }
 
+  loadedSB(args) { 
+    setTimeout(() => {
+        args.object.dismissSoftInput();
+    }, 100)
+    
+}
+
 
 
     getUserGames(){
@@ -63,7 +70,7 @@ export class GamesComponent implements OnInit {
           games.forEach(game => {
               this.userGames.push(game);
           })
-          //this.loading = false;
+          this.loading = false;
         }else{
           console.log("User games is null");
           this.getUserGames();
