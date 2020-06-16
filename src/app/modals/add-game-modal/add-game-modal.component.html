@@ -1,13 +1,12 @@
 
 <Page class="page__content page" shownModally="onShownModally" xmlns:ui="nativescript-star-ratings" >
-    <StackLayout height="100%" width="100%" class="p-20 page modal-page"> 
-        <Label class="h1 text-center" text="{{game?.title}}" textWrap="true"></Label>
+    
+    <GridLayout rows="auto, auto, auto, *" width="100%" class="p-20 page modal-page"> 
+        <Label row="0" class="h1 text-center" text="{{game?.title}}" textWrap="true"></Label>
 
-        <GridLayout class="modal-grid" columns="auto, auto" rows="auto, auto, auto" width="100%" height="70%">           
-            <Image  verticalAlignment="top" width="25%" row="0" col="0" src="{{game?.image}}" stretch="aspectFit"></Image>
-            
+        <GridLayout row="1" class="modal-grid" columns="auto, auto" rows="auto, auto, auto">           
+            <Image  verticalAlignment="top" width="25%" row="0" col="0" src="{{game?.image}}" stretch="aspectFit"></Image>           
             <!-- <Label text="Game Data"  backgroundColor="green"></Label> -->
-
             <StackLayout verticalAlignment="top" class="game-details" width="75%" height="25%" row="0" col="1" orientation="vertical">
                 <Label>
                     <FormattedString>
@@ -46,26 +45,26 @@
                         </GridLayout> 
                     </StackLayout>
                 </ScrollView>                       
-            </StackLayout>      
-
-            
-            <ScrollView orientation="vertical" row="1"  colSpan="2" width="100%" height="60%">
-                <GridLayout rows="auto">
-                    <Label fontSize="18" row="0" text="{{game?.description}}" textWrap="true"></Label>                  
-                </GridLayout>
-            </ScrollView>
+            </StackLayout>                
         </GridLayout>
-
-        <StackLayout row="2" colSpan="2" class="m-1 m-b-2 m-t-0 container-rounded">
-            <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240" class="m-x-auto" (valueChange)="setScore($event)" max="5" value="{{score}}">
+        
+        <StackLayout row="2">
+            <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240"  (valueChange)="setScore($event)" max="5" value="{{score}}">
             </StarRating>
+            
+            <GridLayout rows="auto" columns="*, *" width="100%">
+                <Button row="0" column="0" isEnabled="{{score != 0}}"  *ngIf="!existingGame" class="btn btn-primary"  text="Add to Library" (tap)="addGameToLibrary()" style="background-color: #1eb980;"></Button>
+                <Button row="0" column="0" *ngIf="existingGame" class="btn btn-primary"verticalAlignment="bottom" width="90%" text="Update Review" (tap)="updateGameInLibrary()" style="background-color: #1eb980;"></Button>               
+                <Button row="0" column="1" class="btn btn-primary" text="Metacritic" (tap)="launch()" style="background-color: #2195f2;"></Button>          
+            </GridLayout>          
         </StackLayout>
-
-        <Button *ngIf="!existingGame" class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Add to Library" (tap)="addGameToLibrary()"></Button>
-
-        <Button *ngIf="existingGame" class="btn btn-primary" verticalAlignment="bottom" width="90%" text="Update Review" (tap)="updateGameInLibrary()"></Button>#
-
-    </StackLayout>
+ 
+         <ScrollView orientation="vertical" row="3"  colSpan="2" width="100%">
+             <GridLayout rows="auto">
+                 <Label fontSize="18" row="0" text="{{game?.description}}" textWrap="true"></Label>                  
+             </GridLayout>
+         </ScrollView>
+    </GridLayout>
 
 </Page>
 

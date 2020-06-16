@@ -1,8 +1,5 @@
 import { Component, OnInit , ViewChild, ElementRef, NgZone} from '@angular/core';
 import { ModalDialogParams } from "nativescript-angular/modal-dialog";
-
-
-
 import * as application from "tns-core-modules/application";
 
 import { GameDetail } from '../../shared/game-detail';
@@ -11,6 +8,10 @@ import { UserCollectionService } from '~/app/services/user-collection.service';
 
 declare var android: any;
 const Color = require("tns-core-modules/color").Color;
+var utilityModule = require("utils/utils");
+
+  
+
 
 @Component({
   selector: 'ns-add-game-modal',
@@ -36,6 +37,10 @@ export class AddGameModalComponent implements OnInit {
    }
 
   ngOnInit() {}
+
+  launch(){
+    utilityModule.openUrl("https://www.metacritic.com/");
+  }
 
   loadModal(){
     

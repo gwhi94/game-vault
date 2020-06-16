@@ -33,12 +33,7 @@ export class AddGamesComponent implements OnInit {
    
   }
 
-  loadedSB(args) { 
-    setTimeout(() => {
-        args.object.dismissSoftInput();
-    }, 100)
-    
-}
+
 
   onSubmit(args){
     this.loading = true;
