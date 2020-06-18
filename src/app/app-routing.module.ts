@@ -5,6 +5,7 @@ import { NativeScriptRouterModule } from "nativescript-angular/router";
 import { LoginComponent} from './login/login.component';
 import { TabsComponent } from "./tabs/tabs.component";
 
+
 export const COMPONENTS = [LoginComponent];
 
 const routes: Routes = [
@@ -13,10 +14,8 @@ const routes: Routes = [
         path: "login", component: LoginComponent
     },
     {
-
         path: "tabs", 
         loadChildren: () => import("~/app/tabs/tabs.module").then(m => m.TabsModule),
-
     },
 ];
 

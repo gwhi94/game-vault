@@ -6,6 +6,8 @@ import { GameDetail } from '../../shared/game-detail';
 import { Page } from 'tns-core-modules/ui/page/page';
 import { UserCollectionService } from '~/app/services/user-collection.service';
 
+import * as Toast from 'nativescript-toast';
+
 declare var android: any;
 const Color = require("tns-core-modules/color").Color;
 var utilityModule = require("utils/utils");
@@ -27,6 +29,9 @@ export class AddGameModalComponent implements OnInit {
   score:Number = 0;
   existingGame = false;
 
+  confirmToast = Toast.makeText('Added to library', "long");
+  updateToast = Toast.makeText('Review Updated', "long");
+
   constructor(public zone:NgZone, private params: ModalDialogParams, private page:Page, private userCollectionService:UserCollectionService) {
 
     //workaround for nativescript bug https://github.com/NativeScript/nativescript-angular/issues/1014
@@ -36,7 +41,8 @@ export class AddGameModalComponent implements OnInit {
 
    }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   launch(){
     utilityModule.openUrl("https://www.metacritic.com/");
@@ -69,13 +75,22 @@ export class AddGameModalComponent implements OnInit {
 
   addGameToLibrary(){
     this.userCollectionService.addGameToUserCollection(this.game);
-    this.close();
-
+    this.confirmToast.show();
+    var modalInstance = this;
+    setTimeout(function(){
+      modalInstance.close();
+    }, 1500)
+     
   }
 
   updateGameInLibrary(){
     this.userCollectionService.updateGameInUserCollection(this.game);
-    this.close();
+    this.updateToast.show();
+    var modalInstance = this;
+    setTimeout(function(){
+      modalInstance.close()
+    }, 1500)
+ 
   }
 
   close() {

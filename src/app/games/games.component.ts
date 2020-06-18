@@ -8,6 +8,9 @@ import { CardView } from 'nativescript-cardview';
 import { ModalDialogService, ModalDialogOptions } from "nativescript-angular/modal-dialog";
 import { CardOptionsModalComponent } from '../modals/card-options-modal/card-options-modal.component';
 import { pipe } from 'rxjs';
+import { UserService } from '../services/user.service';
+
+import { RouterExtensions } from 'nativescript-angular/router';
 
 registerElement("CardView", () => CardView);
 
@@ -45,11 +48,10 @@ export class GamesComponent implements OnInit {
   loading = true;
   
   
-  constructor(private userCollectionService:UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService) { }
+  constructor(public routerExtensions:RouterExtensions,private userService:UserService,private userCollectionService:UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService) { }
   
   
   ngOnInit(): void {
-    const gamesFromSource = []; 
     this.getUserGames();
      
   }
@@ -57,29 +59,33 @@ export class GamesComponent implements OnInit {
   loadedSB(args) { 
     setTimeout(() => {
         args.object.dismissSoftInput();
-    }, 100)
+    }, 200)
     
-}
+  }
 
+  logOut(){
+    console.log("Log Out");
+    this.userService.signOut();
+    this.routerExtensions.navigateByUrl('/');
 
+    
+  }
 
     getUserGames(){
+      console.log("hit get games");
       this.userCollectionService.getUserCollection((games) => {
-        this.userGames.length = 0;
+        this.userGames.length = 0;     
+        console.log(games);
         if(games){
-          games.forEach(game => {
-              this.userGames.push(game);
-          })
-          this.loading = false;
+          this.userGames.length = 0;
+            games.forEach(game =>
+               this.userGames.push(game));
         }else{
-          console.log("User games is null");
-          this.getUserGames();
-
+          console.log("Null games");
         }
+          this.loading = false;
       });
-
     }
-
 
     filterGames(args){
       const searchBar = args.object as SearchBar;
@@ -95,9 +101,13 @@ export class GamesComponent implements OnInit {
       const options: ModalDialogOptions = {
         viewContainerRef: this.viewContainerRef,
         fullscreen: false,
-        context: {context:game}
+        context: {context:game},
+        //trying to get a callback here to refresh games list
     };
-    return this.modalService.showModal(CardOptionsModalComponent, options);
+    return this.modalService.showModal(CardOptionsModalComponent, options)
+      .then(() => {
+        this.getUserGames(); 
+      })
     }
 
     borderFunc(game){

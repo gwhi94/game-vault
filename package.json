@@ -1,11 +1,11 @@
 {
   "nativescript": {
     "id": "org.nativescript.gamevault",
-    "tns-android": {
-      "version": "6.5.0"
-    },
     "tns-ios": {
       "version": "6.5.0"
+    },
+    "tns-android": {
+      "version": "6.5.1"
     }
   },
   "description": "NativeScript Application",
@@ -28,16 +28,17 @@
     "nativescript-cardview": "^3.2.0",
     "nativescript-plugin-firebase": "^10.5.2",
     "nativescript-star-ratings": "^1.0.0",
+    "nativescript-toast": "^2.0.0",
     "reflect-metadata": "~0.1.12",
     "rxjs": "^6.4.0",
-    "tns-core-modules": "~6.5.0",
+    "tns-core-modules": "^6.5.6",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
     "@angular/compiler-cli": "~8.2.0",
     "@nativescript/schematics": "^1.0.0",
     "@ngtools/webpack": "~8.2.0",
-    "@schematics/angular": "^9.1.6",
+    "@schematics/angular": "^9.1.8",
     "codelyzer": "~4.5.0",
     "nativescript-dev-webpack": "~1.5.1",
     "node-sass": "^4.7.1",

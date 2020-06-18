@@ -9,6 +9,7 @@ import { UserCollectionService } from '../services/user-collection.service';
 const ObservableArray = require("tns-core-modules/data/observable-array").ObservableArray;
 import { GameDetail } from '../shared/game-detail';
 import { AddGameModalComponent } from '../modals/add-game-modal/add-game-modal.component';
+import { RouterExtensions } from 'nativescript-angular/router';
 
 @Component({
   selector: 'ns-add-games',
@@ -24,7 +25,7 @@ export class AddGamesComponent implements OnInit {
   userGames = [];
   loading = false;
 
-  constructor(private userCollectionService: UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService,private gameSearchService:GameSearchService) { }
+  constructor(public routerExtensions:RouterExtensions  ,private userCollectionService: UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService,private gameSearchService:GameSearchService) { }
 
   ngOnInit(): void {
     this.userCollectionService.getUserCollection((games => {
@@ -33,7 +34,10 @@ export class AddGamesComponent implements OnInit {
    
   }
 
-
+  navBackToHome(){
+    console.log("hit thisg");
+    this.routerExtensions.navigate(['tabs/default']);  
+  }
 
   onSubmit(args){
     this.loading = true;
@@ -43,7 +47,6 @@ export class AddGamesComponent implements OnInit {
         this.searchGames = res['result'];
         this.loading = false;
       })
-
   }
 
   inspectGame(item){

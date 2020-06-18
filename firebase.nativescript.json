@@ -13,7 +13,7 @@
     "crashlytics": false,
     "storage": true,
     "functions": true,
-    "facebook_auth": true,
+    "facebook_auth": false,
     "google_auth": true,
     "admob": false,
     "dynamic_links": true,
