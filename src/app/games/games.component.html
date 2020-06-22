@@ -1,17 +1,13 @@
 
-<Page xmlns:ui="nativescript-star-ratings">
-    
-    
+<Page xmlns:ui="nativescript-star-ratings">       
     <GridLayout class="page__content page" rows="50,50, *">
         <ActionBar style="color: #1eb980 !important; background-color: #1b1b1b;">
-            <NavigationButton text="Go Back" android.systemIcon="ic_menu_back" tap="onNavBtnTap"></NavigationButton>
             <Label class="label" text="My Library"></Label>
             <ActionItem color="#1eb980" (tap)="logOut()" text="Log Out"></ActionItem>
         </ActionBar>
         
         <ActivityIndicator rowSpan="3" color="#1eb980" width="100" height="100" verticalAlignment="center" *ngIf="loading" [busy]="loading"></ActivityIndicator>
-           
-        
+                  
         <SearchBar *ngIf="!loading" class="app-search" row="0" hint="Search your library..."
             color="#1eb980" 
             backgroundColor="#707070"

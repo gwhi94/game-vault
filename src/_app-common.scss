@@ -81,8 +81,13 @@ $muted-grey:lighten(#1b1b1b, 5%);
     
 }
 
+.genre-border {
+    padding:5px;
+}
+
 .genre-item {
-    margin-right:20px;
+    margin-right:5px;
+    padding:5px;
 }
 
 .game-details {
@@ -98,6 +103,10 @@ $muted-grey:lighten(#1b1b1b, 5%);
 }
 .white{
     color:white;
+}
+
+.header-login{
+    color:#1eb980;
 }
 
 .hud {

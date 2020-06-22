@@ -1,13 +1,13 @@
 
 <Page class="page__content page" shownModally="onShownModally" xmlns:ui="nativescript-star-ratings" >
     
-    <GridLayout rows="auto, auto, auto, *" width="100%" class="p-20 page modal-page"> 
+    <GridLayout rows="auto, auto,10, auto, auto, *" width="100%" class="p-20 page modal-page"> 
         <Label row="0" class="h1 text-center" text="{{game?.title}}" textWrap="true"></Label>
-
-        <GridLayout row="1" class="modal-grid" columns="auto, auto" rows="auto, auto, auto">           
-            <Image  verticalAlignment="top" width="25%" row="0" col="0" src="{{game?.image}}" stretch="aspectFit"></Image>           
+               
+        <GridLayout row="1" class="modal-grid" columns="auto,auto" rows="auto,20, auto">           
+                  
             <!-- <Label text="Game Data"  backgroundColor="green"></Label> -->
-            <StackLayout verticalAlignment="top" class="game-details" width="75%" height="25%" row="0" col="1" orientation="vertical">
+            <StackLayout verticalAlignment="top" class="game-details" row="0" col="0" orientation="vertical">
                 <Label>
                     <FormattedString>
                         <Span fontSize="20" fontWeight="Bold" text="Release Date: "></Span>
@@ -27,29 +27,27 @@
                         <Span fontSize="20" fontWeight="Bold" text="Publisher: "></Span>
                         <Span fontSize="18" color="#1eb980" text="{{game?.publisher[0]}}"></Span>
                     </FormattedString>
-                </Label>
-
-                <Label>
-                    <FormattedString>
-                        <Span fontSize="20" fontWeight="Bold" text="Genres:"></Span>
-                    </FormattedString>                                    
-                </Label>         
- 
-
-                <ScrollView orientation="horizontal">
-                    <StackLayout orientation="horizontal" height="35">
-                        <GridLayout *ngFor="let item of game?.genre" rows="*, auto" columns="auto"> 
-                            <StackLayout row="1" class="list-group-item">
-                                <Label class="genre-item" fontSize="22" [text]="item" color="#1eb980"></Label>
-                            </StackLayout>
-                        </GridLayout> 
-                    </StackLayout>
-                </ScrollView>                       
-            </StackLayout>                
+                </Label>                            
+            </StackLayout> 
+            
+            <Image width="" row="0" col="1" src="{{game?.image}}" stretch="aspectFit"></Image>
+            
+            <ScrollView orientation="horizontal" row="2"  colSpan="2" width="100%">
+                <StackLayout orientation="horizontal" height="auto">
+                    <GridLayout *ngFor="let item of game?.genre" rows="*, auto" columns="auto"> 
+                        <StackLayout row="1">
+                            <Border class="genre-border" cornerRadius="10" borderWidth="1" borderColor="#2195f2">
+                                <Label class="genre-item" fontSize="15" [text]="item" color="white"></Label>
+                            </Border>
+                        </StackLayout>
+                    </GridLayout> 
+                </StackLayout>
+            </ScrollView>   
         </GridLayout>
         
-        <StackLayout row="2">
-            <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240"  (valueChange)="setScore($event)" max="5" value="{{score}}">
+        <StackLayout row="3">
+            <Label class="h2 text-center" text="What did you think ?" textWrap="true"></Label>
+            <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240" (valueChange)="setScore($event)" max="5" value="{{score}}">
             </StarRating>
             
             <GridLayout rows="auto" columns="*, *" width="100%">
@@ -59,12 +57,11 @@
             </GridLayout>          
         </StackLayout>
  
-         <ScrollView orientation="vertical" row="3"  colSpan="2" width="100%">
+         <ScrollView orientation="vertical" row="4"  colSpan="2" width="100%">
              <GridLayout rows="auto">
                  <Label fontSize="18" row="0" text="{{game?.description}}" textWrap="true"></Label>                  
              </GridLayout>
          </ScrollView>
     </GridLayout>
-
 </Page>
 

@@ -19,11 +19,12 @@ import { RouterExtensions } from 'nativescript-angular/router';
 export class AddGamesComponent implements OnInit {
 
   private subscription1;
-  searchGames = new ObservableArray();
+  searchGames = new ObservableArray(0);
   detailGame: GameDetail;
   rating = 0;
   userGames = [];
   loading = false;
+  noResults:Boolean = false;
 
   constructor(public routerExtensions:RouterExtensions  ,private userCollectionService: UserCollectionService, private viewContainerRef: ViewContainerRef, private modalService: ModalDialogService,private gameSearchService:GameSearchService) { }
 
@@ -35,7 +36,7 @@ export class AddGamesComponent implements OnInit {
   }
 
   navBackToHome(){
-    console.log("hit thisg");
+    console.log("hit this");
     this.routerExtensions.navigate(['tabs/default']);  
   }
 
@@ -45,6 +46,14 @@ export class AddGamesComponent implements OnInit {
     this.gameSearchService.fetchGamesPrimary(searchBar.text)
       .subscribe(res => {
         this.searchGames = res['result'];
+        console.log("LENGTH",this.searchGames.length, res['result']);
+
+        if(res['result'] == 'No result'){
+          this.noResults = true;
+        }else{
+          this.noResults = false;
+        }
+
         this.loading = false;
       })
   }
