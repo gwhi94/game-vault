@@ -6,9 +6,6 @@ const firebase = require("nativescript-plugin-firebase/app");
 const firebasePlugin = require("nativescript-plugin-firebase");
 
 
-
-
-
 @Injectable({
   providedIn: 'root'
 })
@@ -18,29 +15,33 @@ export class UserCollectionService {
 
   constructor() {
     this.userCollection = firebase.firestore().collection("userCollection");
-    firebasePlugin.getCurrentUser()
-      .then(
-        user => {
-          console.log("HERE", user);
-          this.uid = user.uid
-        }
-      )
- 
+  
    }
 
   getUserCollection(callback:Function) {   
-    console.log("Service called"); 
+    console.log("GET USER COLLECTION --- "); 
 
-    const usersDocument = firestore.collection("userCollection").doc(this.uid);
+    firebasePlugin.getCurrentUser()
+    .then(
+      user => {
+        console.log("HERE", user);
+        this.uid = user.uid;
+        const usersDocument = firestore.collection("userCollection").doc(this.uid);
+
+        console.log("DOC --- " , usersDocument)
    
-      usersDocument.onSnapshot(querySnapshot => {
-        callback(this.handleQuery(querySnapshot))
-      })
+        usersDocument.onSnapshot(querySnapshot => {
+          callback(this.handleQuery(querySnapshot))
+        })
+      }
+    )
   
   }
 
   handleQuery(querySnapshot){ 
+    console.log("Hit handle");
     if(querySnapshot.data()){
+      console.log("handle games");
       return(querySnapshot.data().games)
     }else{
       return null;
@@ -50,8 +51,6 @@ export class UserCollectionService {
 
   addGameToUserCollection(game){
     let date = new Date().toLocaleDateString();
-
- 
     let obJtoUpdate = {title:game.title, rating:game.rating, dateAdded:date}
     const documentToUpdate = firestore.collection("userCollection").doc(this.uid);
     documentToUpdate.update({

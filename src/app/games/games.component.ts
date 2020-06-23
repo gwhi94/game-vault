@@ -82,6 +82,12 @@ export class GamesComponent implements OnInit {
                this.userGames.push(game));
         }else{
           console.log("Null games");
+
+          let that = this;
+
+         /*  setTimeout(function(){
+            that.getUserGames()
+          }, 1500) */
         }
           this.loading = false;
       });

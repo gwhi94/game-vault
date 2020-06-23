@@ -26,6 +26,24 @@ export class UserService {
 
   }
 
+  resetPassword(email){
+
+    let passWordReset;
+     
+    firebase.sendPasswordResetEmail(email)
+      .then(() => {
+        console.log("Password Reset Sent");
+        passWordReset = true;
+      }).catch(error => {
+        console.log("Could not reset password");
+        passWordReset = null
+      })     
+
+      return passWordReset;
+      
+      
+  }
+
   
   constructor() {this.userCollection = firebaseApp.firestore().collection("userCollection")}
   
