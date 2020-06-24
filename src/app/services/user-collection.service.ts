@@ -19,17 +19,11 @@ export class UserCollectionService {
    }
 
   getUserCollection(callback:Function) {   
-    console.log("GET USER COLLECTION --- "); 
-
     firebasePlugin.getCurrentUser()
     .then(
       user => {
-        console.log("HERE", user);
         this.uid = user.uid;
-        const usersDocument = firestore.collection("userCollection").doc(this.uid);
-
-        console.log("DOC --- " , usersDocument)
-   
+        const usersDocument = firestore.collection("userCollection").doc(this.uid);  
         usersDocument.onSnapshot(querySnapshot => {
           callback(this.handleQuery(querySnapshot))
         })
@@ -39,9 +33,7 @@ export class UserCollectionService {
   }
 
   handleQuery(querySnapshot){ 
-    console.log("Hit handle");
     if(querySnapshot.data()){
-      console.log("handle games");
       return(querySnapshot.data().games)
     }else{
       return null;
@@ -65,7 +57,6 @@ export class UserCollectionService {
   }
 
   updateGameInUserCollection(game){
-    console.log("SERV CALLED");
     //we have to pull out all games and delete the specific one and re upload, due to firebase limitations
     const oldDocument = firestore.collection("userCollection").doc(this.uid);
 
@@ -77,16 +68,16 @@ export class UserCollectionService {
         games.push(game);
       })
 
+      var targetIndex = games.findIndex((obj => obj.title == game.title));
       var updatedGamesList = games.filter(game => game.title !== gameTitleToUpdate);
       var updatedGame = {title:game.title, rating:game.rating};
-      updatedGamesList.push(updatedGame);
+
+      updatedGamesList.splice(targetIndex, 0, updatedGame);
       const newDocument = firestore.collection('userCollection').doc(this.uid);
       newDocument.update({
         games:updatedGamesList
       })
-
     })
-
   }
 
   deleteGameInUserCollection(game){

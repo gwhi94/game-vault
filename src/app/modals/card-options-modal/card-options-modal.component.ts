@@ -41,16 +41,18 @@ export class CardOptionsModalComponent implements OnInit {
  
   }
 
-  changeScore(){
-    console.log(this.game);
+  changeScore(response:boolean){
     this.userCollectionService.updateGameInUserCollection(this.game)
-    this.close();
+    let responseObj = {game:response, action:'modify', newRating:this.game.rating} 
+    this.params.closeCallback(responseObj);
+
     
   }
 
-  deleteGame(){
+  deleteGame(response:string){
     this.userCollectionService.deleteGameInUserCollection(this.game);
-    this.close();
+    let responseObj = {game:response, action:'delete'};
+    this.params.closeCallback(responseObj);
   }
 
 

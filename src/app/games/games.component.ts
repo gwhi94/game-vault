@@ -74,7 +74,8 @@ export class GamesComponent implements OnInit {
     getUserGames(){
       console.log("hit get games");
       this.userCollectionService.getUserCollection((games) => {
-        this.userGames.length = 0;     
+        this.userGames.length = 0;  
+        this.userGames = [];
         console.log(games);
         if(games){
           this.userGames.length = 0;
@@ -82,7 +83,6 @@ export class GamesComponent implements OnInit {
                this.userGames.push(game));
         }else{
           console.log("Null games");
-
           let that = this;
 
          /*  setTimeout(function(){
@@ -95,8 +95,7 @@ export class GamesComponent implements OnInit {
 
     filterGames(args){
       const searchBar = args.object as SearchBar;
-      this.searchPhrase = searchBar.text;
-    
+      this.searchPhrase = searchBar.text;   
     }
 
     cardOptions(game, newRating){
@@ -107,12 +106,23 @@ export class GamesComponent implements OnInit {
       const options: ModalDialogOptions = {
         viewContainerRef: this.viewContainerRef,
         fullscreen: false,
-        context: {context:game},
+        context: {context:game}
         //trying to get a callback here to refresh games list
     };
-    return this.modalService.showModal(CardOptionsModalComponent, options)
-      .then(() => {
-        this.getUserGames(); 
+  
+     this.modalService.showModal(CardOptionsModalComponent, options)
+      .then(response => {
+          console.log("CLOSED dMODAL", response);
+
+           if(response.action == 'delete'){
+            this.userGames = this.userGames.filter(function(obj){
+              return obj.title !== response.game
+            })
+          }/* else if(response.action == 'modify'){
+         
+            let index = this.userGames.findIndex((obj => obj.title == response.game));
+            this.userGames[index].rating = response.newRating;
+          } */
       })
     }
 

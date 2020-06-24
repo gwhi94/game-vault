@@ -10,8 +10,8 @@
         </StackLayout>
         
         <GridLayout columns="*,5,*" rows="*" height="auto" width="100%">
-            <Button style="background-color: #1eb980;" row="0" col="0" class="btn btn-primary ml-2" width="100%" text="Update Review" (tap)="changeScore()"></Button>
-            <Button style="background-color: #e94236;" row="0" col="2" class="btn bg-danger" width="100%" text="Delete Game" (tap)="deleteGame()"></Button>
+            <Button style="background-color: #1eb980;" row="0" col="0" class="btn btn-primary ml-2" width="100%" text="Update Review" (tap)="changeScore(true)"></Button>
+            <Button style="background-color: #e94236;" row="0" col="2" class="btn bg-danger" width="100%" text="Delete Game" (tap)="deleteGame(game.title)"></Button>
         </GridLayout>
     </StackLayout>
 
