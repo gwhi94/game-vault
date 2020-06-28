@@ -94,7 +94,7 @@ export class AddGameModalComponent implements OnInit {
   }
 
   close() {
-    this.params.closeCallback();
+    this.params.closeCallback('close');
   }
 
 }

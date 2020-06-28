@@ -32,14 +32,20 @@
                 <StackLayout *ngFor="let item of userGames | searchPipe : searchPhrase">
                         <CardView class="cardStyle" margin="10" elevation="40" radius="10" ripple="true" (tap)="cardOptions(item)">
                             <StackLayout class="inner-card">
-                                <GridLayout columns="6*,*" rows="auto, auto" width="auto" height="100%" class="inner-card-game" [ngStyle]="{'border-color': borderFunc(item)}">                  
+                                <GridLayout columns="6*,*" rows="auto, auto, auto" width="auto" height="100%" class="inner-card-game" [ngStyle]="{'border-color': borderFunc(item)}">                  
                                     <Label row="0" col="0" class="list-group-item-heading" [text]="item.title"></Label>                             
                                     <Label row="1" col="0">
                                         <FormattedString>
-                                            <Span fontSize="20" fontWeight="Bold" text="Date added: "></Span>
-                                            <Span fontSize="18" color="#1eb980" text="{{item.dateAdded}}"></Span>
+                                            <Span fontSize="16" fontWeight="Bold" text="Date added: "></Span>
+                                            <Span fontSize="16" color="#1eb980" text="{{item.dateAdded}}"></Span>
                                         </FormattedString>
-                                    </Label>             
+                                    </Label>    
+                                    <Label row="2" col="0">
+                                        <FormattedString>
+                                            <Span fontSize="18" fontWeight="Bold" text="{{item.rating}} "></Span>
+                                            <Span text="&#xf005;" style="font-size: 24px; color:#1eb980" class="fas t-30"></Span>                                          
+                                        </FormattedString>
+                                    </Label>                      
                                 </GridLayout>                        
                             </StackLayout>
                         </CardView>

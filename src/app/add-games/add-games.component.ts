@@ -59,6 +59,7 @@ export class AddGamesComponent implements OnInit {
   }
 
   inspectGame(item){
+    this.loading = true;
     this.gameSearchService.fetchGameSecondary(item.title, item.platform)
       .subscribe(res => {
         let result = res['result'];
@@ -112,12 +113,8 @@ export class AddGamesComponent implements OnInit {
           
       }
       
-      this.showAddGameModal(this.detailGame, this.rating);
-  
+      this.showAddGameModal(this.detailGame, this.rating); 
   }
-
-
-
 
 
   showAddGameModal(detailGame, rating) {
@@ -127,17 +124,21 @@ export class AddGamesComponent implements OnInit {
       detailGame.rating = rating;
     }
 
-    console.log("DETAI GAME", detailGame);
-
     const options: ModalDialogOptions = {
       viewContainerRef: this.viewContainerRef,
       fullscreen: true,
       context: {context:detailGame}
     };
   
-    this.modalService.showModal(AddGameModalComponent, options);
+    this.modalService.showModal(AddGameModalComponent, options)
+      .then(response => {
+        if(response == 'close'){
+          this.loading = false;
+        }
+      })
+   
 
-  }
+  } 
 
  
 

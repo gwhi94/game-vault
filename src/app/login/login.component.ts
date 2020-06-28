@@ -2,10 +2,8 @@ import { Component, ElementRef, ViewChild, OnInit } from "@angular/core";
 import { alert, prompt } from "tns-core-modules/ui/dialogs";
 import { Page } from "tns-core-modules/ui/page";
 import { RouterExtensions } from "nativescript-angular/router";
-
 import { User } from "../shared/user.model";
 import { UserService } from "../services/user.service";
-
 import { UserCollectionService } from '../services/user-collection.service';
 
 @Component({
@@ -37,8 +35,6 @@ export class LoginComponent {
     }
 
     submit() {
-
-        console.log(this.user);
         if (!this.user.email || !this.user.password) {
             this.alert("Please provide both an email address and password.");
             return;
@@ -55,7 +51,6 @@ export class LoginComponent {
     login() {
         this.userService.signIn(this.user.email,this.user.password)
             .then(() => {
-                console.log("Logging in");
                 this.processing = false;
                 this.routerExtensions.navigate(["../tabs/default"], { clearHistory: true });
             })
@@ -66,22 +61,34 @@ export class LoginComponent {
     }
 
     register() {
-      console.log(this.user.email, this.user.password);
+      if(this.user.password !== this.user.confirmPassword){
+          this.processing = false;
+          this.alert("Passwords do not match");
+      }else{
 
-      this.userService.registerUser(this.user.email, this.user.password)
-        .then((result) => {
-            console.log(result)
-
-            this.userCollectionService.initUserCollectionDocument(result.uid)
-                .then(() => {
-                    this.login();
-                })
-           
-        })
-      .catch((result) => {
-          console.log(result);
-          console.log("User not registered, component")
-      })
+        var reg = new RegExp("^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$");
+  
+        if(!reg.test(this.user.password)){
+            this.userService.registerUser(this.user.email, this.user.password)
+            .then((result) => {
+    
+                if (result !== 'userExists'){
+                    this.userCollectionService.initUserCollectionDocument(result.uid)
+                        .then(() => {
+                            this.login();
+                        })
+                }else{
+                    this.alert("A User with that email already exists, pick another email");
+                    this.processing = false;
+                }                        
+            })
+            .catch((result) => {
+            })
+        }else{
+            this.alert("Password must contain at least one number and be at least 8 characters long");
+            this.processing = false;
+        }
+     } 
     }
 
     forgotPassword() {

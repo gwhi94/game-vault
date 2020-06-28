@@ -23,7 +23,6 @@ export class UserService {
 
   signOut(){
     firebase.logout();
-
   }
 
   resetPassword(email){
@@ -40,11 +39,9 @@ export class UserService {
       })     
 
       return passWordReset;
-      
-      
+           
   }
 
-  
   constructor() {this.userCollection = firebaseApp.firestore().collection("userCollection")}
   
   registerUser(email, password){
@@ -56,9 +53,10 @@ export class UserService {
         return result;
       },
       function(error){
-        console.log("Could not create user");
+        if(error == 'Creating a user failed. com.google.firebase.auth.FirebaseAuthUserCollisionException: The email address is already in use by another account.'){           
+            return 'userExists';         
+        }
       }
     )
   }
-
 }

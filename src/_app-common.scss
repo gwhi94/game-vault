@@ -67,28 +67,10 @@ $muted-grey:lighten(#1b1b1b, 5%);
     }
 }
 
-.modal-page {
-    padding-top:115px;
-    padding:20px;
-    
-}
-
 .game-image{
     margin-top: 5px;
 }
 
-.modal-grid {
-    
-}
-
-.genre-border {
-    padding:5px;
-}
-
-.genre-item {
-    margin-right:5px;
-    padding:5px;
-}
 
 .game-details {
     padding-left:20px;
@@ -183,7 +165,7 @@ $muted-grey:lighten(#1b1b1b, 5%);
     }
     
     .list-group-item-heading {
-    font-size: 22;
+    font-size: 18;
     }
     
     .list-group-item-text {
@@ -353,19 +335,25 @@ $muted-grey:lighten(#1b1b1b, 5%);
         border-color:#1eb980;
         background-color: #424242;
         color: #fff;
-        height:300px;
-        padding:15px;
+        height:230px;
+        
       }
     
       .inner-card {
-          padding:10px;
+          
           
       }
     
       .inner-card-game {
         border-left-width: 3;
-        padding:20px;
+        padding:10px;
+        padding-bottom: 3px;
+        padding-top: 3px;
         
+      }
+
+      .game-title{
+          font-size: 10px !important;
       }
 
 

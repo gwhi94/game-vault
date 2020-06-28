@@ -28,14 +28,12 @@ export class CardOptionsModalComponent implements OnInit {
   loadModal(){
     this.game = this.params.context.context;
     this.score = this.game.rating;
-    console.log(this.game);
   }
   
   setScore(args: any){
 
     if(this.game){
       this.score = Number(args.object.get('value'));      
-      console.log("here", this.score); 
       this.game.rating = this.score;
     }
  

@@ -27,7 +27,7 @@
 
     <Label class="h2 text-center" color="#e94236" *ngIf="this.noResults"  text="No Results" row="2"></Label>
 
-    <ListView *ngIf="!loading && this.noResults == false" height="" [items]="searchGames" row="2">
+    <ListView *ngIf="!loading && this.noResults == false" [items]="searchGames" row="2">
         <ng-template let-item="item">
             <StackLayout>                  
                 <Label row="0" col="1" class="list-group-item-heading" (tap)="inspectGame(item)" [text]="item.title"></Label>

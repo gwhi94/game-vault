@@ -1,8 +1,8 @@
 
-<Page class="page__content page" shownModally="onShownModally" xmlns:ui="nativescript-star-ratings" >
+<Page class="page__content page"  shownModally="onShownModally" xmlns:ui="nativescript-star-ratings" >
     
-    <GridLayout rows="auto,10, auto,20, auto, *" width="100%" class="p-20 page modal-page"> 
-        <Label row="0" class="h1 text-left" text="{{game?.title}}" textWrap="true"></Label>
+    <GridLayout height="70%" rows="auto,5, *,5, *, *, auto" width="100%" class="p-20 page modal-page"> 
+        <Label row="0" fontSize="25" class="game-title" class="h1 text-left" text="{{game?.title}}" textWrap="true"></Label>
                
         <GridLayout row="2" class="modal-grid" columns="auto,auto" rows="auto,20, auto">                       
             <!-- <Label text="Game Data"  backgroundColor="green"></Label> -->
@@ -31,13 +31,13 @@
             
             <Image width="" row="0" col="1" src="{{game?.image}}" stretch="aspectFit"></Image>
             
-            <ScrollView orientation="horizontal" row="2"  colSpan="2" width="100%">
+            <ScrollView style="height:100px" orientation="horizontal" row="2"  colSpan="2" width="100%">
                 <StackLayout orientation="horizontal" height="auto">
-                    <GridLayout *ngFor="let item of game?.genre" rows="*, auto" columns="auto"> 
+                    <GridLayout *ngFor="let item of game?.genre" rows="*" columns="auto"> 
                         <StackLayout row="1">
-                            <Border class="genre-border" cornerRadius="10" borderWidth="1" borderColor="#1eb980">
-                                <Label class="genre-item" fontSize="15" [text]="item" color="white"></Label>
-                            </Border>
+                           <!--  <Border style="margin-right: 15px; padding-left:10px;padding-right: 10px;" class="genre-border" cornerRadius="10" borderWidth="1" borderColor="#1eb980"> -->
+                                <Label textWrap="false" fontAttributes="Bold" class="genre-item" fontSize="18" [text]=" item + ' | ' " color="#1eb980"></Label>
+                            <!-- </Border> -->
                         </StackLayout>
                     </GridLayout> 
                 </StackLayout>
@@ -51,7 +51,7 @@
                 <StarRating filledBorderColor="#1eb980" filledColor="#1eb980" style="width:240" (valueChange)="setScore($event)" max="5" value="{{score}}">
                 </StarRating>
                 
-                <GridLayout rows="auto" columns="*, *" width="100%">
+                <GridLayout rows="auto" columns="*, *" width="90%">
                     <Button row="0" column="0" isEnabled="{{score != 0}}"  *ngIf="!existingGame" class="btn btn-primary"  text="Add to Library" (tap)="addGameToLibrary()" style="background-color: #1eb980;"></Button>
                     <Button row="0" column="0" *ngIf="existingGame" class="btn btn-primary"verticalAlignment="bottom" width="90%" text="Update Review" (tap)="updateGameInLibrary()" style="background-color: #1eb980;"></Button>               
                     <Button row="0" column="1" class="btn btn-primary" text="Metacritic" (tap)="launch()" style="background-color: #2195f2;"></Button>          
